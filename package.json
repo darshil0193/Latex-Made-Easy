@@ -1,0 +1,19 @@
+{
+  "name": "latex-made-easy",
+  "version": "1.0.0",
+  "description": "Trying to make latex easy",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darshil0193/Latex-Made-Easy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darshil0193/Latex-Made-Easy/issues"
+  },
+  "homepage": "https://github.com/darshil0193/Latex-Made-Easy#readme"
+}
