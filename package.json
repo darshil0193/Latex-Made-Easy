@@ -29,7 +29,19 @@
     "time-grunt": "^1.0.0",
     "jshint-stylish": "^1.0.0"
   },
-  "engines": {
-    "node": ">=0.10.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darshil0193/Latex-Made-Easy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darshil0193/Latex-Made-Easy/issues"
+  },
+  "homepage": "https://github.com/darshil0193/Latex-Made-Easy#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.3"
   }
 }
