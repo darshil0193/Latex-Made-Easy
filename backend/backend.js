@@ -1,3 +1,5 @@
+require("handlebars")
+
 let express = require('express');
 var path = require('path');
 let app = express();
@@ -35,3 +37,4 @@ app.post('/addToDB', (req, res) => {
 app.listen(3000, () => {
     console.log('app listening on port 3000');
 });
+
