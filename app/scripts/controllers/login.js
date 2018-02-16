@@ -9,9 +9,9 @@
  */
 angular.module('latexmadeeasyApp')
   .controller('LoginCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.username = '';
+
+    $scope.login = function() {
+      console.log($scope.username);
+    }
   });
