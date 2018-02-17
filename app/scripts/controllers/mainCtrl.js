@@ -7,8 +7,8 @@
  * # MainCtrl
  * Controller of the latexmadeeasyApp
  */
-angular.module('latexmadeeasyApp')
-  .controller('MainCtrl', function() {
+let MainController = function() {
+  console.log('main controller');
+};
 
-    console.log('main');
-  });
+angular.module('latexmadeeasyApp').controller('MainCtrl', MainController);
