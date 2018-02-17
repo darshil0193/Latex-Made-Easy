@@ -1,1 +1,21 @@
-<p>This is the login view. {{$scope.awesomeThings[0]}}</p>
+<form class="login-form" ng-submit="login(credentials)">
+  <div class="login-imgcontainer">
+    <img src="../images/avatar.png" alt="Avatar" class="login-avatar">
+  </div>
+
+  <div class="login-container">
+    <label><b>Username</b></label>
+    <input type="text" ng-model="credentials.username" placeholder="Enter Username" name="uname" class="login-text" required>
+
+    <label><b>Password</b></label>
+    <input type="password" ng-model="credentials.password" placeholder="Enter Password" name="psw" class="login-password" required>
+
+    <button type="submit" class="login-buttons">Login</button>
+    <button type="button" class="login-registerbtn" ng-click="register(credentials)">Register</button>
+    <span class="login-forgot-psw"><a href="#">Forgot password?</a></span>
+  </div>
+
+  <!--<div class="login-container" style="background-color:#f1f1f1">-->
+    <!---->
+  <!--</div>-->
+</form>
