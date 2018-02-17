@@ -6,11 +6,14 @@
  * @description
  * # login
  */
-angular.module('latexmadeeasyApp')
-  .directive('login', function () {
-    return {
-      templateUrl: 'views/login.html',
-      restrict: 'E',
-      controller: 'LoginCtrl',
-    };
-  });
+let LoginDirective = function() {
+  return {
+    templateUrl: 'views/login.html',
+    restrict: 'E',
+    controller: 'LoginCtrl',
+    controllerAs: 'ctrl',
+    bindToController: true,
+  };
+};
+
+angular.module('latexmadeeasyApp').directive('login', LoginDirective);
