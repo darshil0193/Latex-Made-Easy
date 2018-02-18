@@ -1,7 +1,8 @@
-{  //Pseudo JSON
+{
   "chapter":{
     "chapter_name":"Introduction",
     "chapter_intro":"chapter_intro",
+    "is_appendix": "false"
   },
   "sections":[
     {
