@@ -1,0 +1,14 @@
+{{ heading }}
+{{#if ordered}}
+  \begin{enumerate}
+    {{#each arr}}
+      \item {{this}}
+     {{/each}}
+  \end{enumerate}
+{{else}}
+  \begin{itemize}
+    {{#each arr}}
+      \item {{this}}
+    {{/each}}
+  \end{itemize}
+{{/if}}
