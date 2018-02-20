@@ -1,1 +1,7 @@
-<login></login>
+<div ng-if="!loginBinder.successfulLogin">
+  <login successful-login="loginBinder.successfulLogin"></login>
+</div>
+
+<div ng-if="loginBinder.successfulLogin">
+  <h1>Logged In</h1>
+</div>

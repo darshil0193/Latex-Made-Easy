@@ -7,8 +7,10 @@
  * # MainCtrl
  * Controller of the latexmadeeasyApp
  */
-let MainController = function() {
-  console.log('main controller');
+let MainController = function($scope) {
+  $scope.loginBinder = {
+    successfulLogin: false
+  };
 };
 
 angular.module('latexmadeeasyApp').controller('MainCtrl', MainController);
