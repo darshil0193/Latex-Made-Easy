@@ -7,8 +7,7 @@
  * # LoginCtrl
  * Controller of the latexmadeeasyApp
  */
-let LoginController = function($http, $mdDialog, LoginFact) {
-  this.$http = $http;
+let LoginController = function($mdDialog, LoginFact) {
   this.$mdDialog = $mdDialog;
   this.isRegister = false;
   this.loginFailed = false;
@@ -57,8 +56,8 @@ let LoginController = function($http, $mdDialog, LoginFact) {
       }).catch((err) => {
         this.loginFailed = true;
         this.updateErrors(err);
-        $mdDialog.show(
-          $mdDialog.alert()
+        this.$mdDialog.show(
+          this.$mdDialog.alert()
             .parent(angular.element(document.querySelector('#popupContainer')))
             .clickOutsideToClose(true)
             .title(this.failureTitle)
@@ -92,8 +91,8 @@ let LoginController = function($http, $mdDialog, LoginFact) {
           this.credentials.username = '';
         }
 
-        $mdDialog.show(
-          $mdDialog.alert()
+        this.$mdDialog.show(
+          this.$mdDialog.alert()
             .parent(angular.element(document.querySelector('#popupContainer')))
             .clickOutsideToClose(true)
             .title(this.failureTitle)
