@@ -7,6 +7,7 @@ let hb = require('handlebars');
 let app = express();
 let MongoClient = require('mongodb').MongoClient;
 let uri = "mongodb+srv://admin:admin@latex-made-easy-xpqdu.mongodb.net/latex-made-easy-db";
+let _ = require('lodash');
 
 let bodyParser = require('body-parser');
 
@@ -23,59 +24,55 @@ app.get('/', (req, res) => {
   res.send('SUCCESS');
 });
 
-function authentication(password) {
-  if(password.length<8){
-    return [false,'Make sure password length is greater than or equal to 8'];
+let passwordCheck = (password) => {
+  if(password.length < 8) {
+    return {
+      error: 'PASS_LENGTH'
+    }
+  } else if(password.includes(' ')){
+    return {
+      error: 'PASS_SPACE'
+    }
+  } else if(password.includes('//')){
+    return {
+      error: 'PASS_CHARS'
+    }
+  } else{
+    return {
+      error: ''
+    }
   }
-  else if(password.includes(' ')){
-    return [false,'Make sure password doesnot contain spaces'];
-  }
-  else if(password.includes('//')){
-    return [false, 'Make sure password doesnot contain //'];
-  }
-  else if(password.includes('/*')){
-    return [false, 'Make sure password doesnot contain /*'];
-  }
-  else if(password.includes('*/')){
-    return [false, 'Make sure password doesnot contain */'];
-  }
-  else{
-    return [true, ""];
-  }
-}
+};
 
 app.post('/registerUser', (req, res) => {
   let username = req.body.username.toLowerCase();
   let password = req.body.password;
   let email = req.body.email.toLowerCase();
+
   MongoClient.connect(uri, (err, client) => {
     const collection = client.db('latex-made-easy-db').collection('users');
     collection.findOne({username: username}, (err, item) => {
       if (item !== null) {
         client.close();
-        res.status(400).send('Username already taken.');
+        res.status(409).send({error: 'Username already taken.'});
       } else {
         collection.findOne({email: email}, (err, item) => {
           if(item !== null){
             client.close();
-            res.status(400).send('EmailId already used');
-          }
-          else{
-            var auth=authentication(password);
-            var returntype=auth[0];
-            var string = auth[1];
-            if(returntype) {
+            res.status(409).send({error: 'EmailId already used'});
+          } else{
+            let passCheck = passwordCheck(password);
+            if(_.isEmpty(passCheck.error)) {
               collection.insert({username: username, password: password, email: email}, (err, item) => {
                 client.close();
                 if (err === null) {
-                  res.status(200).send('Added to the database');
+                  res.status(200).send({data: 'Added to the database'});
                 } else {
-                  res.status(400).send('Error adding to database');
+                  res.status(400).send({error: 'Error adding to database'});
                 }
               });
-            }
-            else{
-              res.status(400).send(string);
+            } else{
+              res.status(400).send(passCheck);
             }
           }
         });
@@ -93,30 +90,28 @@ app.post('/logInUser', (req, res) => {
       client.close();
       if(item !== null) {
         if(item.password === password){
-          res.status(200).send('User can login');
+          res.status(200).send({data: 'User logged in successfully'});
         }
         else{
-          res.status(200).send('Password is incorrect');
+          res.status(400).send({error: 'Password is incorrect'});
         }
       } else {
-        res.status(400).send('No such user exists');
+        res.status(400).send({error: 'No such user exists'});
       }
     });
   });
 });
 
 app.post('/getLatex', (req, res) => {
-        var json = req.body;
-        var latexCode = '';
-        for (var key in json){
-          var filename = key + '.html';
-          var source = fs.readFileSync(path.resolve('backend/latex-handlers/'+filename), 'utf8');
-          var data = json[key];
-          var template = hb.compile(source);
-          var curLatex = template(data);
-          latexCode += curLatex;
+        let json = req.body;
+        let latexCode = '';
+        for (let key in json){
+          let filename = key + '.html';
+          let source = fs.readFileSync(path.resolve('backend/latex-handlers/'+filename), 'utf8');
+          let template = hb.compile(source);
+          latexCode += template(json[key]);
         }
-        console.log(latexCode);
+        res.status(200).send(latexCode);
 });
 
 app.listen(3000, () => {
