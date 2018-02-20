@@ -2,6 +2,8 @@
 
 let express = require('express');
 let path = require('path');
+let fs = require('fs');
+let hb = require('handlebars');
 let app = express();
 let MongoClient = require('mongodb').MongoClient;
 let uri = "mongodb+srv://admin:admin@latex-made-easy-xpqdu.mongodb.net/latex-made-easy-db";
