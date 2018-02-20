@@ -8,8 +8,9 @@
  * Controller of the latexmadeeasyApp
  */
 
-let StartupPageController = function($http) {
-  this.$http = $http;
+let StartupPageController = function($mdDialog, StartupPageFact) {
+  this.$mdDialog = $mdDialog;
+  this.StartupPageFact = StartupPageFact;
   this.frontBlockData = {
     title: {
       title: '',
@@ -30,8 +31,16 @@ let StartupPageController = function($http) {
   this.getLatex = (frontBlockData) => {
     let requestObject = _.cloneDeep(frontBlockData);
     requestObject.title.date = frontBlockData.title.date.toDateString().substring(4);
-    this.$http.post('http://localhost:3000/getLatex', requestObject).then((data) => {
-      console.log(data);
+    this.StartupPageFact.getLatex(requestObject).then((data) => {
+      this.$mdDialog.show(
+        this.$mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Latex Code')
+          .textContent(data.data)
+      );
+    }).catch((err) => {
+      console.log(err.data);
     });
   };
 };
