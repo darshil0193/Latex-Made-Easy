@@ -151,3 +151,12 @@ body {
   float: right;
   padding-top: 16px;
 }
+
+.login-error {
+  color: white;
+  border: none;
+  width: auto;
+  padding: 10px 18px;
+  margin-left: 150px;
+  background-color:#FF0000;
+}
