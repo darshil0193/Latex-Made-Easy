@@ -33,7 +33,7 @@ let passwordCheck = (password) => {
     return {
       error: 'PASS_SPACE'
     }
-  } else if(password.includes('//')){
+  } else if(password.includes('//') || password.includes('/*') || password.includes('*/')){
     return {
       error: 'PASS_CHARS'
     }
@@ -54,12 +54,12 @@ app.post('/registerUser', (req, res) => {
     collection.findOne({username: username}, (err, item) => {
       if (item !== null) {
         client.close();
-        res.status(409).send({error: 'Username already taken.'});
+        res.status(409).send({error: 'UNAME_TAKEN'});
       } else {
         collection.findOne({email: email}, (err, item) => {
           if(item !== null){
             client.close();
-            res.status(409).send({error: 'EmailId already used'});
+            res.status(409).send({error: 'EMAIL_USED'});
           } else{
             let passCheck = passwordCheck(password);
             if(_.isEmpty(passCheck.error)) {
@@ -93,10 +93,10 @@ app.post('/logInUser', (req, res) => {
           res.status(200).send({data: 'User logged in successfully'});
         }
         else{
-          res.status(400).send({error: 'Password is incorrect'});
+          res.status(400).send({error: 'PASS_INCORRECT'});
         }
       } else {
-        res.status(400).send({error: 'No such user exists'});
+        res.status(400).send({error: 'USER_INCORRECT'});
       }
     });
   });
