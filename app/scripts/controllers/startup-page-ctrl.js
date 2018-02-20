@@ -16,7 +16,7 @@ let StartupPageController = function($http) {
       author: '',
       college: '',
       degree: '',
-      date: '',
+      date: new Date(),
     },
     acknowledge: {
       acknowledge:''
@@ -25,9 +25,12 @@ let StartupPageController = function($http) {
       abstract: ''
     }
   };
+  this.pageNumber = 1;
 
   this.getLatex = (frontBlockData) => {
-    this.$http.post('http://localhost:3000/getLatex', frontBlockData).then((data) => {
+    let requestObject = _.cloneDeep(frontBlockData);
+    requestObject.title.date = frontBlockData.title.date.toDateString().substring(4);
+    this.$http.post('http://localhost:3000/getLatex', requestObject).then((data) => {
       console.log(data);
     });
   };

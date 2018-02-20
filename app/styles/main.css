@@ -160,3 +160,21 @@ body {
   margin-left: 150px;
   background-color:#FF0000;
 }
+
+.custom-margin-bottom {
+  margin-bottom: 15px;
+}
+
+.custom-more-width {
+  width: 750px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.custom-align-right {
+  float: right;
+}
+
+.custom-align-center {
+  margin-left: 30%;
+}

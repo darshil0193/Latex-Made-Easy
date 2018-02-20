@@ -14,7 +14,7 @@ let FrontBlockDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      frontBlockData: '='
+      title: '='
     }
   };
 };
