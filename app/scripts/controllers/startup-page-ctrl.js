@@ -11,13 +11,23 @@
 let StartupPageController = function($http) {
   this.$http = $http;
   this.frontBlockData = {
-    title: '',
-    acknowledgement: '',
-    abstract: ''
+    title: {
+      title: '',
+      author: '',
+      college: '',
+      degree: '',
+      date: '',
+    },
+    acknowledge: {
+      acknowledge:''
+    },
+    abstract: {
+      abstract: ''
+    }
   };
 
   this.getLatex = (frontBlockData) => {
-    this.$http.post('http://localhost:3000/checkStatus', frontBlockData).then((data) => {
+    this.$http.post('http://localhost:3000/getLatex', frontBlockData).then((data) => {
       console.log(data);
     });
   };
