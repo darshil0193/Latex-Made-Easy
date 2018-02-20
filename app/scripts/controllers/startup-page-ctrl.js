@@ -19,12 +19,15 @@ let StartupPageController = function($mdDialog, StartupPageFact) {
       degree: '',
       date: new Date(),
     },
+    dedication: {
+      dedication: ''
+    },
     acknowledge: {
       acknowledge:''
     },
     abstract: {
       abstract: ''
-    }
+    },
   };
   this.pageNumber = 1;
 
