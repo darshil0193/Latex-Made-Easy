@@ -1,6 +1,8 @@
 <front-block ng-if="ctrl.pageNumber === 1" title="ctrl.frontBlockData.title"></front-block>
 
-<acknowledgement-abstract ng-if="ctrl.pageNumber === 2"
+<dedication ng-if="ctrl.pageNumber === 2" dedication="ctrl.frontBlockData.dedication"></dedication>
+
+<acknowledgement-abstract ng-if="ctrl.pageNumber === 3"
                           acknowledge="ctrl.frontBlockData.acknowledge"
                           abstract="ctrl.frontBlockData.abstract">
 
