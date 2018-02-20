@@ -74,6 +74,20 @@ app.post('/logInUser', (req, res) => {
   });
 });
 
+app.post('/getLatex', (req, res) => {
+        var json = req.body;
+        var latexCode = '';
+        for (var key in json){
+          var filename = key + '.html';
+          var source = fs.readFileSync(path.resolve('backend/latex-handlers/'+filename), 'utf8');
+          var data = json[key];
+          var template = hb.compile(source);
+          var curLatex = template(data);
+          latexCode += curLatex;
+        }
+        console.log(latexCode);
+});
+
 app.listen(3000, () => {
-  console.log('app listening on port 3000');
+    console.log('app listening on port 3000');
 });
