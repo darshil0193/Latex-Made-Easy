@@ -13,6 +13,9 @@ let LoginDirective = function() {
     controller: 'LoginCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
+    scope: {
+      successfulLogin: "="
+    }
   };
 };
 
