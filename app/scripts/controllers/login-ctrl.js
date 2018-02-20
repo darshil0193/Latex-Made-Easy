@@ -18,7 +18,7 @@ let LoginController = function($http) {
 
   this.register = (credentials) => {
     if(!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password) && !_.isEmpty(credentials.email)) {
-      this.$http.post('http://localhost:3000/addToDB', {
+      this.$http.post('http://localhost:3000/registerUser', {
         username: credentials.username,
         password: credentials.password,
         email: credentials.email,
@@ -38,7 +38,7 @@ let LoginController = function($http) {
 
   this.login = ((credentials) => {
     if(!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password)) {
-      this.$http.post('http://localhost:3000/checkStatus', {
+      this.$http.post('http://localhost:3000/logInUser', {
         username: credentials.username,
         password: credentials.password
       }).then((data) => {
