@@ -21,6 +21,27 @@ app.get('/', (req, res) => {
   res.send('SUCCESS');
 });
 
+function authentication(password) {
+  if(password.length<8){
+    return [false,'Make sure password length is greater than or equal to 8'];
+  }
+  else if(password.includes(' ')){
+    return [false,'Make sure password doesnot contain spaces'];
+  }
+  else if(password.includes('//')){
+    return [false, 'Make sure password doesnot contain //'];
+  }
+  else if(password.includes('/*')){
+    return [false, 'Make sure password doesnot contain /*'];
+  }
+  else if(password.includes('*/')){
+    return [false, 'Make sure password doesnot contain */'];
+  }
+  else{
+    return [true, ""];
+  }
+}
+
 app.post('/registerUser', (req, res) => {
   let username = req.body.username.toLowerCase();
   let password = req.body.password;
@@ -38,14 +59,22 @@ app.post('/registerUser', (req, res) => {
             res.status(400).send('EmailId already used');
           }
           else{
-            collection.insert({username: username, password: password, email: email}, (err, item) => {
-              client.close();
-              if(err === null) {
-                res.status(200).send('Added to the database');
-              } else {
-                res.status(400).send('Error adding to database');
-              }
-            });
+            var auth=authentication(password);
+            var returntype=auth[0];
+            var string = auth[1];
+            if(returntype) {
+              collection.insert({username: username, password: password, email: email}, (err, item) => {
+                client.close();
+                if (err === null) {
+                  res.status(200).send('Added to the database');
+                } else {
+                  res.status(400).send('Error adding to database');
+                }
+              });
+            }
+            else{
+              res.status(400).send(string);
+            }
           }
         });
       }
