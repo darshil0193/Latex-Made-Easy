@@ -2,12 +2,9 @@
 
 <dedication ng-if="ctrl.pageNumber === 2" dedication="ctrl.frontBlockData.dedication"></dedication>
 
-<acknowledgement-abstract ng-if="ctrl.pageNumber === 3"
-                          acknowledge="ctrl.frontBlockData.acknowledge"
-                          abstract="ctrl.frontBlockData.abstract">
+<acknowledgement ng-if="ctrl.pageNumber === 3" acknowledge="ctrl.frontBlockData.acknowledge"> </acknowledgement>
 
-</acknowledgement-abstract>
-<!--<abstract ng-if="ctrl.pageNumber === 2" abstract="ctrl.frontBlockData.abstract"></abstract>-->
+<abstract ng-if="ctrl.pageNumber === 4" abstract="ctrl.frontBlockData.abstract"></abstract>
 
 <div>
   <button class="btn btn-primary" ng-click="ctrl.pageNumber = ctrl.pageNumber - 1" ng-disabled="ctrl.pageNumber === 1"><<< Previous</button>

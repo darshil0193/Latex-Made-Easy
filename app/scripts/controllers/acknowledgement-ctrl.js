@@ -7,8 +7,8 @@
  * # AcknowledgementCtrl
  * Controller of the latexmadeeasyApp
  */
-let AcknowledgementAbstractController = function() {
+let AcknowledgementController = function() {
 
 };
 
-angular.module('latexmadeeasyApp').controller('AcknowledgementAbstractCtrl', AcknowledgementAbstractController);
+angular.module('latexmadeeasyApp').controller('AcknowledgementCtrl', AcknowledgementController);
