@@ -1,19 +1,17 @@
-<form>
-  <div class="form-group">
-    <label>Title: </label>
-    <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.title" required>
+<div class="form-group">
+  <label>Title:  <span class="required_field">*</span> </label>
+  <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.title" required>
 
-    <label>Author: </label>
-    <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.author" required>
+  <label>Author:  <span class="required_field">*</span> </label>
+  <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.author" required>
 
-    <label>College: </label>
-    <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.college" required>
+  <label>College:  <span class="required_field">*</span> </label>
+  <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.college" required>
 
-    <label>Degree: </label>
-    <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.degree" required>
+  <label>Degree:  <span class="required_field">*</span> </label>
+  <input type="text" class="form-control custom-margin-bottom" ng-model="ctrl.title.degree" required>
 
-    <label>Date: </label>
-    <md-datepicker class="custom-margin-bottom" ng-model="ctrl.title.date"
-                   md-placeholder="Enter date" md-open-on-focus></md-datepicker>
-  </div>
-</form>
+  <label>Date: </label>
+  <md-datepicker class="custom-margin-bottom" ng-model="ctrl.title.date"
+                 md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+</div>

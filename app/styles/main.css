@@ -178,3 +178,7 @@ body {
 .custom-align-center {
   margin-left: 30%;
 }
+
+.required_field {
+  color: #FF0000;
+}
