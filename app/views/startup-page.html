@@ -1,13 +1,19 @@
-<front-block ng-if="ctrl.pageNumber === 1" title="ctrl.frontBlockData.title"></front-block>
+<form name="main_form">
+  <front-block ng-show="ctrl.pageNumber === 1" title="ctrl.frontBlockData.title"></front-block>
 
-<dedication ng-if="ctrl.pageNumber === 2" dedication="ctrl.frontBlockData.dedication"></dedication>
+  <dedication ng-show="ctrl.pageNumber === 2" dedication="ctrl.frontBlockData.dedication"></dedication>
 
-<acknowledgement ng-if="ctrl.pageNumber === 3" acknowledge="ctrl.frontBlockData.acknowledge"> </acknowledgement>
+  <acknowledgement ng-show="ctrl.pageNumber === 3" acknowledge="ctrl.frontBlockData.acknowledge"></acknowledgement>
 
-<abstract ng-if="ctrl.pageNumber === 4" abstract="ctrl.frontBlockData.abstract"></abstract>
+  <abstract ng-show="ctrl.pageNumber === 4" abstract="ctrl.frontBlockData.abstract"></abstract>
 
-<div>
-  <button class="btn btn-primary" ng-click="ctrl.pageNumber = ctrl.pageNumber - 1" ng-disabled="ctrl.pageNumber === 1"><<< Previous</button>
-  <button class="btn btn-primary custom-align-center" ng-click="ctrl.getLatex(ctrl.frontBlockData)">Get Latex</button>
-  <button class="btn btn-primary custom-align-right" ng-click="ctrl.pageNumber = ctrl.pageNumber + 1">Next >>></button>
-</div>
+  <div>
+    <button class="btn btn-primary" ng-click="main_form.$valid && (ctrl.pageNumber = ctrl.pageNumber - 1)"
+            ng-disabled="ctrl.pageNumber === 1">&lt;&lt;&lt; Previous</button>
+    <button type="submit" class="btn btn-primary custom-align-center"
+            ng-click="main_form.$valid && ctrl.getLatex(ctrl.frontBlockData)">Get Latex</button>
+    <button class="btn btn-primary custom-align-right"
+            ng-click="main_form.$valid && (ctrl.pageNumber = ctrl.pageNumber + 1)">Next &gt;&gt;&gt;</button>
+  </div>
+
+</form>
