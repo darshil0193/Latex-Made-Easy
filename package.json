@@ -36,8 +36,18 @@
     "type": "git",
     "url": "git+https://github.com/darshil0193/Latex-Made-Easy.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Darshil Patel <darshil0193@gmail.com> (https://www.linkedin.com/in/darshilpatel/)",
+  "contributors": [{
+    "name": "Ruthvik Mandava",
+    "email": "rmandav@ncsu.edu"
+  },{
+    "name": "Srinivas Parasa",
+    "email": "sparasa@ncsu.edu"
+  },{
+    "name": "Harshavardhan Reddy",
+    "email": "mreddy2@ncsu.edu"
+  }],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/darshil0193/Latex-Made-Easy/issues"
   },
