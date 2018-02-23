@@ -12,7 +12,7 @@ let StartupPageFactory = function($http) {
 
   this.getLatex = (reqObject) => {
     return this.$http({
-      url: 'http://localhost:3000/getLatex',
+      url: 'https://latex-made-easy-backend.herokuapp.com/getLatex',
       method: 'POST',
       data: reqObject,
       responseType: 'blob',
