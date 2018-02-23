@@ -13,6 +13,8 @@ let currentUser = '';
 
 let bodyParser = require('body-parser');
 
+let port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -158,6 +160,6 @@ app.post('/getLatex', (req, res) => {
   archive.finalize();
 });
 
-app.listen(3000, () => {
-  console.log('app listening on port 3000');
+app.listen(port, () => {
+  console.log('app listening on port ' + port);
 });
