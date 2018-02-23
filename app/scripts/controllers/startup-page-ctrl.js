@@ -8,7 +8,10 @@
  * Controller of the latexmadeeasyApp
  */
 
-let StartupPageController = function($mdDialog, StartupPageFact) {
+let StartupPageController = function($mdDialog, $rootScope, StartupPageFact, FileSaver, Blob) {
+  this.fileSaver = FileSaver;
+  this.blob = Blob;
+  this.$rootScope = $rootScope;
   this.$mdDialog = $mdDialog;
   this.StartupPageFact = StartupPageFact;
   this.frontBlockData = {
@@ -34,14 +37,11 @@ let StartupPageController = function($mdDialog, StartupPageFact) {
   this.getLatex = (frontBlockData) => {
     let requestObject = _.cloneDeep(frontBlockData);
     requestObject.title.date = frontBlockData.title.date.toDateString().substring(4);
+    requestObject.currentUser = this.$rootScope.currentUser;
     this.StartupPageFact.getLatex(requestObject).then((data) => {
-      this.$mdDialog.show(
-        this.$mdDialog.alert()
-          .parent(angular.element(document.querySelector('#popupContainer')))
-          .clickOutsideToClose(true)
-          .title('Latex Code')
-          .textContent(data.data)
-      );
+      let blob = new this.blob([data.data]);
+      let fileName = data.headers()["content-disposition"].split("\"")[1];
+      this.fileSaver.saveAs(blob, fileName);
     }).catch((err) => {
       console.log(err.data);
     });

@@ -17,7 +17,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngMaterial'
+    'ngMaterial',
+    'ngFileSaver'
   ])
   .config(($routeProvider) => {
     $routeProvider

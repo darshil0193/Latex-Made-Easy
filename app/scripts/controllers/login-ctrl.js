@@ -7,7 +7,8 @@
  * # LoginCtrl
  * Controller of the latexmadeeasyApp
  */
-let LoginController = function($mdDialog, LoginFact) {
+let LoginController = function($mdDialog, $rootScope, LoginFact) {
+  this.$rootScope = $rootScope;
   this.$mdDialog = $mdDialog;
   this.isRegister = false;
   this.loginFailed = false;
@@ -48,6 +49,7 @@ let LoginController = function($mdDialog, LoginFact) {
     if(!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password) && !_.isEmpty(credentials.email)) {
       this.LoginFact.registerUser(credentials).then(() => {
         this.successfulLogin = true;
+        this.$rootScope.currentUser = this.credentials.username;
         this.credentials = {
           username: '',
           password: '',
@@ -72,6 +74,7 @@ let LoginController = function($mdDialog, LoginFact) {
     if(!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password)) {
       this.LoginFact.loginUser(credentials).then(() => {
         this.successfulLogin = true;
+        this.$rootScope.currentUser = this.credentials.username;
         this.credentials = {
           username: '',
           password: '',

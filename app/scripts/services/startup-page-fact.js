@@ -11,7 +11,12 @@ let StartupPageFactory = function($http) {
   this.$http = $http;
 
   this.getLatex = (reqObject) => {
-    return this.$http.post('http://localhost:3000/getLatex', reqObject);
+    return this.$http({
+      url: 'http://localhost:3000/getLatex',
+      method: 'POST',
+      data: reqObject,
+      responseType: 'blob',
+    });
   };
 
   return {
