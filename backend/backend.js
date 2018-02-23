@@ -116,7 +116,10 @@ app.post('/getLatex', (req, res) => {
     let filename = key + '.html';
     let source = fs.readFileSync(path.resolve('backend/latex-handlers/' + filename), 'utf8');
     let template = hb.compile(source);
-    latexCode += template(json[key]) + '\r\n';
+    let templateLatex = template(json[key]);
+    if(!_.isEmpty(templateLatex)) {
+      latexCode += templateLatex + '\r\n';
+    }
   }
 
   fs.writeFile(__dirname + '/latex_file.tex', latexCode, 'utf8', (err) => {
