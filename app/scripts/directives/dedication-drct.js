@@ -15,9 +15,6 @@ let DedicationDirective = function() {
     bindToController: true,
     scope: {
       dedication: '='
-    },
-    link: (scope) => {
-      console.log(scope);
     }
   };
 };
