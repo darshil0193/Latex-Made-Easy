@@ -31,6 +31,11 @@ let StartupPageController = function($mdDialog, $rootScope, StartupPageFact, Fil
     abstract: {
       abstract: ''
     },
+    chapters: {
+      chapters: {
+        sections: []
+      }
+    }
   };
   this.pageNumber = 1;
 

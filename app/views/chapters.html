@@ -1,0 +1,9 @@
+<!--<div id="chapters_div" class="form-group">-->
+  <!--<button class="btn btn-primary" ng-click="ctrl.addSection()"> Add Section </button>-->
+<!--</div>-->
+<button class="btn btn-primary" ng-click="ctrl.addSection()">Add Section</button><br/>
+<!--<button class="btn btn-primary" ng-click="ctrl.addChapter()">Add Chapter</button><br/>-->
+
+<div ng-repeat="section in ctrl.chapters.chapters.sections">
+  <sections section="section"></sections>
+</div>

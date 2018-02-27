@@ -7,6 +7,11 @@
 
   <abstract ng-show="ctrl.pageNumber === 4" abstract="ctrl.frontBlockData.abstract"></abstract>
 
+  <chapters ng-show="ctrl.pageNumber === 5" chapters="ctrl.frontBlockData.chapters"></chapters>
+  <!--<div ng-repeat="chapter in ctrl.chapters.chapters" ng-show="ctrl.pageNumber >= 5">-->
+    <!--<chapters chapter="chapter"></chapters>-->
+  <!--</div>-->
+
   <div>
     <button class="btn btn-primary" ng-click="main_form.$valid && (ctrl.pageNumber = ctrl.pageNumber - 1)"
             ng-disabled="ctrl.pageNumber === 1">&lt;&lt;&lt; Previous</button>
