@@ -14,7 +14,10 @@ let ChaptersDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      chapters: '=',
+      chapter: '=',
+    },
+    link: (scope) => {
+      console.log('added chapter');
     }
   };
 };

@@ -8,8 +8,8 @@
  * Controller of the latexmadeeasyApp
  */
 let ChaptersController = function() {
-  this.numOfChapters = 0;
-  this.sectionNumber = 0;
+  // this.numOfChapters = 0;
+  this.sectionNumber = 1;
 
   this.addSection = () => {
     // let chaptersElement = document.getElementById('chapters_div');
@@ -18,7 +18,7 @@ let ChaptersController = function() {
     // chaptersElement.appendChild(sectionElement);
     // this.$scope.$apply();
     this.sectionNumber++;
-    this.chapters.chapters.sections.push({
+    this.chapter.sections.push({
       id: this.sectionNumber,
       data: ''
     });
