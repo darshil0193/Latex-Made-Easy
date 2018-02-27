@@ -14,6 +14,7 @@ let StartupPageController = function($mdDialog, $rootScope, StartupPageFact, Fil
   this.$rootScope = $rootScope;
   this.$mdDialog = $mdDialog;
   this.StartupPageFact = StartupPageFact;
+  this.chapterNumber = 1;
   this.frontBlockData = {
     title: {
       title: '',
@@ -31,6 +32,15 @@ let StartupPageController = function($mdDialog, $rootScope, StartupPageFact, Fil
     abstract: {
       abstract: ''
     },
+    chapters: {
+      chapters: [{
+        id: 1,
+        sections: [{
+          id: 1,
+          data: ''
+        }]
+      }]
+    }
   };
   this.pageNumber = 1;
 
@@ -46,6 +56,17 @@ let StartupPageController = function($mdDialog, $rootScope, StartupPageFact, Fil
       console.log(err.data);
     });
   };
+
+  this.addChapter = () => {
+    this.chapterNumber++;
+    this.frontBlockData.chapters.chapters.push({
+      id: this.chapterNumber,
+      sections: [{
+        id: 1,
+        data: ''
+      }]
+    });
+  }
 };
 
 angular.module('latexmadeeasyApp').controller('StartupPageCtrl', StartupPageController);
