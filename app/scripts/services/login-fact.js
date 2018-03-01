@@ -26,9 +26,16 @@ let LoginFactory = function($http) {
     });
   };
 
+  this.sendEmail = (credentials) => {
+    return this.$http.post('https://latex-made-easy-backend.herokuapp.com/sendEmail', {
+      username: credentials.username
+    })
+  };
+
   return {
     registerUser: this.registerUser,
-    loginUser: this.loginUser
+    loginUser: this.loginUser,
+    sendEmail: this.sendEmail
   }
 };
 

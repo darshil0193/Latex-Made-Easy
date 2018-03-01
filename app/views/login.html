@@ -10,13 +10,15 @@
     <label><b>Username</b></label>
     <input type="text" ng-model="ctrl.credentials.username" placeholder="Enter Username" name="uname" class="login-text" required>
 
-    <label><b>Password</b></label>
-    <input type="password" ng-model="ctrl.credentials.password" placeholder="Enter Password" name="psw" class="login-password" required>
+    <label ng-if="!ctrl.isForgotPassword"><b>Password</b></label>
+    <input type="password" ng-model="ctrl.credentials.password" ng-if="!ctrl.isForgotPassword" placeholder="Enter Password" name="psw" class="login-password" required>
 
-    <button ng-if="!ctrl.isRegister" type="submit" class="login-buttons" ng-click="ctrl.login(ctrl.credentials)">Login</button>
-    <button ng-if="ctrl.isRegister" type="submit" class="login-buttons" ng-click="ctrl.register(ctrl.credentials)">Register</button>
-    <button ng-if="ctrl.isRegister" type="button" class="login-registerbtn" ng-click="ctrl.showLoginForm()">Login</button>
-    <button ng-if="!ctrl.isRegister" type="button" class="login-registerbtn" ng-click="ctrl.showRegistrationForm()">Register</button>
-    <span ng-if="!ctrl.isRegister" class="login-forgot-psw"><a href="#">Forgot password?</a></span>
+    <button ng-if="!ctrl.isRegister && !ctrl.isForgotPassword" type="submit" class="login-buttons" ng-click="ctrl.login(ctrl.credentials)">Login</button>
+    <button ng-if="ctrl.isRegister && !ctrl.isForgotPassword" type="submit" class="login-buttons" ng-click="ctrl.register(ctrl.credentials)">Register</button>
+    <button ng-if="ctrl.isRegister && !ctrl.isForgotPassword" type="button" class="login-registerbtn" ng-click="ctrl.showLoginForm()">Login</button>
+    <button ng-if="!ctrl.isRegister && !ctrl.isForgotPassword" type="button" class="login-registerbtn" ng-click="ctrl.showRegistrationForm()">Register</button>
+    <button ng-if="!ctrl.isRegister && !ctrl.isForgotPassword" type="button" class="login-forgot-psw" ng-click="ctrl.showForgotPasswordForm()">Forgot Password</button>
+    <button ng-if="ctrl.isForgotPassword" type="button" class="login-buttons" ng-click="ctrl.sendEmail(ctrl.credentials)">Send Email</button>
+    <!--<span ng-if="!ctrl.isRegister" class="login-forgot-psw"><a href="#">Forgot password?</a></span>-->
   </div>
 </form>
