@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts\services\startup-page-fact.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">scripts/services/</a> startup-page-fact.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/7</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+/**
+ * @ngdoc service
+ * @name latexmadeeasyApp.startupPage
+ * @description
+ * # startupPage
+ * Factory in the latexmadeeasyApp.
+ */
+&nbsp;
+var StartupPageFactory = function StartupPageFactory($http) {
+  var _this = this;
+&nbsp;
+  this.$http = $http;
+&nbsp;
+  this.getLatex = <span class="fstat-no" title="function not covered" >function (reqObject) {</span>
+<span class="cstat-no" title="statement not covered" >    return _this.$http({</span>
+      url: 'https://latex-made-easy-backend.herokuapp.com/getLatex',
+      method: 'POST',
+      data: reqObject,
+      responseType: 'blob'
+    });
+  };
+&nbsp;
+  return {
+    getLatex: this.getLatex
+  };
+};
+&nbsp;
+angular.module('latexmadeeasyApp').factory('StartupPageFact', StartupPageFactory);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlM6L1Byb2plY3RzL0xhdGV4LU1hZGUtRWFzeS9hcHAvc2NyaXB0cy9zZXJ2aWNlcy9zdGFydHVwLXBhZ2UtZmFjdC5qcyJdLCJuYW1lcyI6WyJTdGFydHVwUGFnZUZhY3RvcnkiLCIkaHR0cCIsImdldExhdGV4IiwicmVxT2JqZWN0IiwidXJsIiwibWV0aG9kIiwiZGF0YSIsInJlc3BvbnNlVHlwZSIsImFuZ3VsYXIiLCJtb2R1bGUiLCJmYWN0b3J5Il0sIm1hcHBpbmdzIjoiQUFBQTs7QUFFQTs7Ozs7Ozs7QUFPQSxJQUFJQSxxQkFBcUIsU0FBckJBLGtCQUFxQixDQUFTQyxLQUFULEVBQWdCO0FBQUE7O0FBQ3ZDLE9BQUtBLEtBQUwsR0FBYUEsS0FBYjs7QUFFQSxPQUFLQyxRQUFMLEdBQWdCLFVBQUNDLFNBQUQsRUFBZTtBQUM3QixXQUFPLE1BQUtGLEtBQUwsQ0FBVztBQUNoQkcsV0FBSyx3REFEVztBQUVoQkMsY0FBUSxNQUZRO0FBR2hCQyxZQUFNSCxTQUhVO0FBSWhCSSxvQkFBYztBQUpFLEtBQVgsQ0FBUDtBQU1ELEdBUEQ7O0FBU0EsU0FBTztBQUNMTCxjQUFVLEtBQUtBO0FBRFYsR0FBUDtBQUdELENBZkQ7O0FBaUJBTSxRQUFRQyxNQUFSLENBQWUsa0JBQWYsRUFBbUNDLE9BQW5DLENBQTJDLGlCQUEzQyxFQUE4RFYsa0JBQTlEIiwiZmlsZSI6InN0YXJ0dXAtcGFnZS1mYWN0LmVzNS5qcyIsInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcclxuXHJcbi8qKlxyXG4gKiBAbmdkb2Mgc2VydmljZVxyXG4gKiBAbmFtZSBsYXRleG1hZGVlYXN5QXBwLnN0YXJ0dXBQYWdlXHJcbiAqIEBkZXNjcmlwdGlvblxyXG4gKiAjIHN0YXJ0dXBQYWdlXHJcbiAqIEZhY3RvcnkgaW4gdGhlIGxhdGV4bWFkZWVhc3lBcHAuXHJcbiAqL1xyXG5sZXQgU3RhcnR1cFBhZ2VGYWN0b3J5ID0gZnVuY3Rpb24oJGh0dHApIHtcclxuICB0aGlzLiRodHRwID0gJGh0dHA7XHJcblxyXG4gIHRoaXMuZ2V0TGF0ZXggPSAocmVxT2JqZWN0KSA9PiB7XHJcbiAgICByZXR1cm4gdGhpcy4kaHR0cCh7XHJcbiAgICAgIHVybDogJ2h0dHBzOi8vbGF0ZXgtbWFkZS1lYXN5LWJhY2tlbmQuaGVyb2t1YXBwLmNvbS9nZXRMYXRleCcsXHJcbiAgICAgIG1ldGhvZDogJ1BPU1QnLFxyXG4gICAgICBkYXRhOiByZXFPYmplY3QsXHJcbiAgICAgIHJlc3BvbnNlVHlwZTogJ2Jsb2InLFxyXG4gICAgfSk7XHJcbiAgfTtcclxuXHJcbiAgcmV0dXJuIHtcclxuICAgIGdldExhdGV4OiB0aGlzLmdldExhdGV4LFxyXG4gIH1cclxufTtcclxuXHJcbmFuZ3VsYXIubW9kdWxlKCdsYXRleG1hZGVlYXN5QXBwJykuZmFjdG9yeSgnU3RhcnR1cFBhZ2VGYWN0JywgU3RhcnR1cFBhZ2VGYWN0b3J5KTtcclxuIl19</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 01 2018 18:33:34 GMT-0500 (Eastern Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
