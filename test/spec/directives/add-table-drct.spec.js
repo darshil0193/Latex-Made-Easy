@@ -15,6 +15,6 @@ describe('Directive: addTable', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<add-table></add-table>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the addTable directive');
+    expect(element.text()).toBe('');
   }));
 });
