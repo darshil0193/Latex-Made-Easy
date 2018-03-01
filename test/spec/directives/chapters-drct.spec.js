@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: startupPage', function () {
+describe('Directive: chapters', function () {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -13,8 +13,8 @@ describe('Directive: startupPage', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<startup-page></startup-page>');
+    element = angular.element('<chapters></chapters>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the startupPage directive');
+    expect(element.text()).toBe('');
   }));
 });

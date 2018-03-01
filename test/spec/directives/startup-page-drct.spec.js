@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: frontBlock', function () {
+describe('Directive: startupPage', function () {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -13,8 +13,8 @@ describe('Directive: frontBlock', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<front-block></front-block>');
+    element = angular.element('<startup-page></startup-page>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the frontBlock directive');
+    expect(element.text()).toBe('');
   }));
 });

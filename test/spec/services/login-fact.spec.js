@@ -6,13 +6,13 @@ describe('Service: loginFact', function () {
   beforeEach(module('latexmadeeasyApp'));
 
   // instantiate service
-  var loginFact;
-  beforeEach(inject(function (_loginFact_) {
-    loginFact = _loginFact_;
+  var LoginFact;
+  beforeEach(inject(function (_LoginFact_) {
+    LoginFact = _LoginFact_;
   }));
 
   it('should do something', function () {
-    expect(!!loginFact).toBe(true);
+    expect(!!LoginFact).toBe(true);
   });
 
 });

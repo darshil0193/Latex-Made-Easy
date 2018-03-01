@@ -6,6 +6,9 @@
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-concurrent": "^1.0.0",
@@ -28,25 +31,35 @@
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
+    "jasmine-core": "^3.1.0",
     "jit-grunt": "^0.9.1",
-    "time-grunt": "^1.0.0",
-    "jshint-stylish": "^1.0.0"
+    "jshint-stylish": "^1.0.0",
+    "karma-babel-preprocessor": "^7.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "time-grunt": "^1.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darshil0193/Latex-Made-Easy.git"
   },
   "author": "Darshil Patel <darshil0193@gmail.com> (https://www.linkedin.com/in/darshilpatel/)",
-  "contributors": [{
-    "name": "Ruthvik Mandava",
-    "email": "rmandav@ncsu.edu"
-  },{
-    "name": "Srinivas Parasa",
-    "email": "sparasa@ncsu.edu"
-  },{
-    "name": "Harshavardhan Reddy",
-    "email": "mreddy2@ncsu.edu"
-  }],
+  "contributors": [
+    {
+      "name": "Ruthvik Mandava",
+      "email": "rmandav@ncsu.edu"
+    },
+    {
+      "name": "Srinivas Parasa",
+      "email": "sparasa@ncsu.edu"
+    },
+    {
+      "name": "Harshavardhan Reddy",
+      "email": "mreddy2@ncsu.edu"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/darshil0193/Latex-Made-Easy/issues"
@@ -59,6 +72,7 @@
     "express": "^4.16.2",
     "fs": "0.0.1-security",
     "handlebars": "^4.0.11",
+    "karma": "^2.0.0",
     "lodash": "^4.17.5",
     "mongodb": "^3.0.2",
     "nodemailer": "^4.6.0"
