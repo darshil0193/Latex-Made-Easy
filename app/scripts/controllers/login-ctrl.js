@@ -12,6 +12,8 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
   this.$mdDialog = $mdDialog;
   this.isRegister = false;
   this.loginFailed = false;
+  this.isForgotPassword = false;
+  this.emailSent = false;
   this.failureMessage = '';
   this.failureTitle = '';
   this.LoginFact = LoginFact;
@@ -42,6 +44,22 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
       this.failureTitle = 'Email Error';
       this.failureMessage = 'Email ID already used. Please Login or try with a different email id';
       this.credentials.email = '';
+    } else if(err.data.error === 'PASS_INCORRECT') {
+      this.failureTitle = 'Password Error';
+      this.failureMessage = 'Incorrect Password Entered';
+      this.credentials.password = '';
+    } else if(err.data.error === 'USER_INCORRECT') {
+      this.failureTitle = 'Username Error';
+      this.failureMessage = 'Incorrect Username Entered. Such a user does not exist';
+      this.credentials.password = '';
+      this.credentials.username = '';
+    } else if(err.data.error === 'EMAIL_NOT_SENT') {
+      this.failureTitle = 'Sorry!';
+      this.failureMessage = 'There seems to be some trouble with sending the email';
+      if(!_.isEmpty(err.data.email)) {
+        this.failureMessage += ' to ' + err.data.email;
+      }
+      this.failureMessage += '. We are working on it.';
     }
   };
 
@@ -83,16 +101,7 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
       }).catch((err) => {
         this.loginFailed = true;
 
-        if(err.data.error === 'PASS_INCORRECT') {
-          this.failureTitle = 'Password Error';
-          this.failureMessage = 'Incorrect Password Entered';
-          this.credentials.password = '';
-        } else if(err.data.error === 'USER_INCORRECT') {
-          this.failureTitle = 'Username Error';
-          this.failureMessage = 'Incorrect Username Entered. Such a user does not exist';
-          this.credentials.password = '';
-          this.credentials.username = '';
-        }
+        this.updateErrors(err);
 
         this.$mdDialog.show(
           this.$mdDialog.alert()
@@ -115,7 +124,32 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
   this.showRegistrationForm = () => {
     this.failureMessage = '';
     this.isRegister = true;
-  }
+  };
+
+  this.showForgotPasswordForm = () => {
+    this.failureMessage = '';
+    this.isRegister = false;
+    this.isForgotPassword = true;
+  };
+
+  this.sendEmail = (credentials) => {
+    if(!_.isEmpty(credentials.username)) {
+      this.LoginFact.sendEmail(credentials).then((data) => {
+        this.emailSent = true;
+        this.credentials.email = data.data.email;
+      }).catch((err) => {
+        this.updateErrors(err);
+        this.$mdDialog.show(
+          this.$mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title(this.failureTitle)
+            .textContent(this.failureMessage)
+            .ok('Got it!')
+        );
+      });
+    }
+  };
 };
 
 angular.module('latexmadeeasyApp').controller('LoginCtrl', LoginController);

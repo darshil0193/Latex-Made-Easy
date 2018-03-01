@@ -9,6 +9,7 @@ let MongoClient = require('mongodb').MongoClient;
 let uri = "mongodb+srv://admin:admin@latex-made-easy-xpqdu.mongodb.net/latex-made-easy-db";
 let _ = require('lodash');
 let archiver = require('archiver');
+let nodemailer = require('nodemailer');
 let currentUser = '';
 
 let bodyParser = require('body-parser');
@@ -161,6 +162,43 @@ app.post('/getLatex', (req, res) => {
   archive.file(__dirname + '/latex_file.tex', {name: 'latex_file.tex'});
   archive.file(__dirname + '/class_file.cls', {name: 'class_file.cls'});
   archive.finalize();
+});
+
+app.post('/sendEmail', (req, res) => {
+  let username = req.body.username.toLowerCase();
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'latex.made.easy.mailer@gmail.com',
+      pass: 'LatexMadeEasyMailer'
+    }
+  });
+
+
+  MongoClient.connect(uri, (err, client) => {
+    const collection = client.db('latex-made-easy-db').collection('users');
+    collection.findOne({username: username}, (err, item) => {
+      client.close();
+      if (item !== null) {
+        let mailOptions = {
+          from: 'latex.made.easy.mailer@gmail.com',
+          to: item.email,
+          subject: 'Password For Latex Made Easy',
+          html: 'Your password for Latex Made Easy is: "<b>' + item.password + '</b>"'
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+          if (error) {
+            res.status(400).send({error: 'EMAIL_NOT_SENT', err: error});
+          } else {
+            res.status(200).send({email: item.email});
+          }
+        });
+      } else {
+        res.status(400).send({error: 'USER_INCORRECT', email: item.email});
+      }
+    });
+  });
 });
 
 app.listen(port, () => {
