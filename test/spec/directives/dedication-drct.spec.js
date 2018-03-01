@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: abstract', function () {
+describe('Directive: dedication', function () {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -13,8 +13,8 @@ describe('Directive: abstract', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<abstract></abstract>');
+    element = angular.element('<dedication></dedication>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the abstract directive');
+    expect(element.text()).toBe('');
   }));
 });

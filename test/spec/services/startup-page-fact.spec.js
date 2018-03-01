@@ -6,13 +6,13 @@ describe('Service: startupPage', function () {
   beforeEach(module('latexmadeeasyApp'));
 
   // instantiate service
-  var startupPage;
-  beforeEach(inject(function (_startupPage_) {
-    startupPage = _startupPage_;
+  let StartupPageFact;
+  beforeEach(inject(function (_StartupPageFact_) {
+    StartupPageFact = _StartupPageFact_;
   }));
 
   it('should do something', function () {
-    expect(!!startupPage).toBe(true);
+    expect(!!StartupPageFact).toBe(true);
   });
 
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: chapters', function () {
+describe('Directive: login', function () {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -13,8 +13,8 @@ describe('Directive: chapters', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<chapters></chapters>');
+    element = angular.element('<login></login>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the chapters directive');
+    expect(element.text()).toBe('');
   }));
 });

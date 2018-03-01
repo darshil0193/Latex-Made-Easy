@@ -5,6 +5,27 @@ module.exports = function(config) {
   'use strict';
 
   config.set({
+
+    preprocessors: {
+      'app/scripts/**/*.js': ['babel', 'coverage'],
+      'test/spec/**/*.spec.js': ['babel'],
+    },
+
+    reporters: ['progress', 'coverage'],
+
+    babelPreprocessor: {
+      options: {
+        presets: ['es2015'],
+        sourceMap: 'inline'
+      },
+      filename: function(file) {
+        return file.originalPath.replace(/\.js$/, '.es5.js');
+      },
+      sourceFileName: function(file) {
+        return file.originalPath;
+      }
+    },
+
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -40,7 +61,7 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
+      // 'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -49,7 +70,7 @@ module.exports = function(config) {
     ],
 
     // web server port
-    port: 8080,
+    port: 9999,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -61,12 +82,17 @@ module.exports = function(config) {
     // - IE (only Windows)
     browsers: [
       'PhantomJS'
+      // 'Chrome'
     ],
 
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-babel-preprocessor',
+      'babel-core',
+      'karma-chrome-launcher',
+      'karma-coverage'
     ],
 
     // Continuous Integration mode
@@ -85,5 +111,10 @@ module.exports = function(config) {
     // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    }
   });
 };

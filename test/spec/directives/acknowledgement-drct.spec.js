@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: section', function () {
+describe('Directive: acknowledgement', function () {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -13,8 +13,8 @@ describe('Directive: section', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<section></section>');
+    element = angular.element('<acknowledgement></acknowledgement>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the section directive');
+    expect(element.text()).toBe('');
   }));
 });

@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: FrontBlockCtrl', function () {
+describe('Controller: DedicationCtrl', function () {
 
   // load the controller's module
   beforeEach(module('latexmadeeasyApp'));
 
-  var FrontBlockCtrl,
+  var DedicationCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    FrontBlockCtrl = $controller('FrontBlockCtrl', {
+    DedicationCtrl = $controller('DedicationCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(FrontBlockCtrl.awesomeThings.length).toBe(3);
+  it('should pass', function () {
+    expect(true).toBe(true);
   });
 });

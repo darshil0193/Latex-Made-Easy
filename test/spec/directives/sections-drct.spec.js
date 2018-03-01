@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: login', function () {
+describe('Directive: section', function () {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -13,8 +13,8 @@ describe('Directive: login', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<login></login>');
+    element = angular.element('<section></section>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the login directive');
+    expect(element.text()).toBe('');
   }));
 });

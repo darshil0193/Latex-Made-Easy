@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: acknowledgement', function () {
+describe('Directive: frontBlock', function () {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -13,8 +13,8 @@ describe('Directive: acknowledgement', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<acknowledgement></acknowledgement>');
+    element = angular.element('<front-block></front-block>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the acknowledgement directive');
+    expect(element.text()).toBe('');
   }));
 });
