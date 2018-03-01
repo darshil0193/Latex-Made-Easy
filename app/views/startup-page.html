@@ -1,4 +1,12 @@
+<div class="wrapper">
+  <button class="btn btn-primary logout-btn" ng-click="ctrl.logOut()"> Log Out </button>
+</div>
+
+<br/>
+<br/>
+
 <form name="main_form">
+
   <front-block ng-show="ctrl.pageNumber === 1" title="ctrl.frontBlockData.title"></front-block>
 
   <dedication ng-show="ctrl.pageNumber === 2" dedication="ctrl.frontBlockData.dedication"></dedication>
@@ -12,7 +20,7 @@
     <chapters chapter="chapter"></chapters>
   </div>
 
-  <div>
+  <div class="form-group">
     <button class="btn btn-primary" ng-click="main_form.$valid && (ctrl.pageNumber = ctrl.pageNumber - 1)"
             ng-disabled="ctrl.pageNumber === 1">&lt;&lt;&lt; Previous</button>
     <button type="submit" class="btn btn-primary custom-align-center"
@@ -22,5 +30,4 @@
     <button class="btn btn-primary custom-align-right"
             ng-click="main_form.$valid && (ctrl.pageNumber = ctrl.pageNumber + 1)">Next &gt;&gt;&gt;</button>
   </div>
-
 </form>
