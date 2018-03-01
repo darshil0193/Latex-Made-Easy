@@ -189,13 +189,13 @@ app.post('/sendEmail', (req, res) => {
 
         transporter.sendMail(mailOptions, function(error, info){
           if (error) {
-            res.status(400).send({error: 'EMAIL_NOT_SENT', err: error});
+            res.status(400).send({error: 'EMAIL_NOT_SENT', err: error, email: item.email});
           } else {
             res.status(200).send({email: item.email});
           }
         });
       } else {
-        res.status(400).send({error: 'USER_INCORRECT', email: item.email});
+        res.status(400).send({error: 'USER_INCORRECT'});
       }
     });
   });

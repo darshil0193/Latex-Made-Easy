@@ -11,9 +11,7 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
   this.$rootScope = $rootScope;
   this.$mdDialog = $mdDialog;
   this.isRegister = false;
-  this.loginFailed = false;
   this.isForgotPassword = false;
-  this.emailSent = false;
   this.failureMessage = '';
   this.failureTitle = '';
   this.LoginFact = LoginFact;
@@ -74,7 +72,6 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
           email: '',
         };
       }).catch((err) => {
-        this.loginFailed = true;
         this.updateErrors(err);
         this.$mdDialog.show(
           this.$mdDialog.alert()
@@ -99,8 +96,6 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
           email: '',
         };
       }).catch((err) => {
-        this.loginFailed = true;
-
         this.updateErrors(err);
 
         this.$mdDialog.show(
@@ -135,8 +130,15 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
   this.sendEmail = (credentials) => {
     if(!_.isEmpty(credentials.username)) {
       this.LoginFact.sendEmail(credentials).then((data) => {
-        this.emailSent = true;
-        this.credentials.email = data.data.email;
+        this.$mdDialog.show(
+          this.$mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Mail Sent')
+            .htmlContent('An email containing password has been sent to: <b>' + data.data.email + '</b>')
+            .ok('Got it!')
+        );
+
       }).catch((err) => {
         this.updateErrors(err);
         this.$mdDialog.show(
@@ -147,6 +149,8 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
             .textContent(this.failureMessage)
             .ok('Got it!')
         );
+      }).finally(() => {
+        this.isForgotPassword = false;
       });
     }
   };
