@@ -125,8 +125,21 @@ body {
   cursor: pointer;
   width: auto;
   padding: 10px 18px;
-  /*background-color: #f44336;*/
   background-color: #4336f4;
+}
+
+.logout-btn {
+  background-color: #990000;
+  color: white;
+  padding: 10px 18px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+.logout-btn:hover {
+  background-color: #660000;
 }
 
 .login-cancelbtn:hover {
@@ -159,15 +172,6 @@ body {
   float: right;
 }
 
-.login-error {
-  color: white;
-  border: none;
-  width: auto;
-  padding: 10px 18px;
-  margin-left: 150px;
-  background-color:#FF0000;
-}
-
 .custom-margin-bottom {
   margin-bottom: 15px;
 }
@@ -184,8 +188,4 @@ body {
 
 .custom-align-center {
   margin-left: 30%;
-}
-
-.required_field {
-  color: #FF0000;
 }

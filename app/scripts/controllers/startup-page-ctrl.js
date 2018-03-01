@@ -8,11 +8,12 @@
  * Controller of the latexmadeeasyApp
  */
 
-let StartupPageController = function($mdDialog, $rootScope, StartupPageFact, FileSaver, Blob) {
+let StartupPageController = function($mdDialog, $rootScope, $window, StartupPageFact, FileSaver, Blob) {
   this.fileSaver = FileSaver;
   this.blob = Blob;
   this.$rootScope = $rootScope;
   this.$mdDialog = $mdDialog;
+  this.$window = $window;
   this.StartupPageFact = StartupPageFact;
   this.chapterNumber = 1;
   this.frontBlockData = {
@@ -66,7 +67,11 @@ let StartupPageController = function($mdDialog, $rootScope, StartupPageFact, Fil
         data: ''
       }]
     });
-  }
+  };
+
+  this.logOut = () => {
+    this.$window.location.reload();
+  };
 };
 
 angular.module('latexmadeeasyApp').controller('StartupPageCtrl', StartupPageController);
