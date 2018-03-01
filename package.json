@@ -67,6 +67,7 @@
   "homepage": "https://github.com/darshil0193/Latex-Made-Easy#readme",
   "dependencies": {
     "angular-file-saver": "^1.1.3",
+    "angular-ui-grid": "^4.2.4",
     "archiver": "^2.1.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",

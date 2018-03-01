@@ -10,6 +10,7 @@
 let ChaptersController = function() {
   // this.numOfChapters = 0;
   this.sectionNumber = 1;
+  this.tableNumber = 1;
 
   this.addSection = () => {
     // let chaptersElement = document.getElementById('chapters_div');
@@ -22,7 +23,16 @@ let ChaptersController = function() {
       id: this.sectionNumber,
       data: ''
     });
-  }
+  };
+
+  this.addTable = () => {
+    this.tableNumber++;
+    this.chapter.tables.push({
+      id: this.tableNumber,
+      columns: [],
+      rows: []
+    });
+  };
 };
 
 angular.module('latexmadeeasyApp').controller('ChaptersCtrl', ChaptersController);

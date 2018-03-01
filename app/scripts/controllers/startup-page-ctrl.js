@@ -39,7 +39,8 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
         sections: [{
           id: 1,
           data: ''
-        }]
+        }],
+        tables: []
       }]
     }
   };

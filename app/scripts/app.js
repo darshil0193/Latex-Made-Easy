@@ -18,7 +18,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngMaterial',
-    'ngFileSaver'
+    'ngFileSaver',
+    'ui.grid',
+    'ui.grid.edit',
   ])
   .config(($routeProvider) => {
     $routeProvider
