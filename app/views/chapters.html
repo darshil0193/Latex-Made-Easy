@@ -1,21 +1,20 @@
-<!--<div id="chapters_div" class="form-group">-->
-  <!--<button class="btn btn-primary" ng-click="ctrl.addSection()"> Add Section </button>-->
-<!--</div>-->
-
 <label>{{ctrl.chapter.name}}</label> <br/><br/>
 
-<div ng-if="ctrl.introductionNumber === 1">
-  <introduction introduction="ctr.chapter.introduction"></introduction>
-</div>
-
-<div ng-repeat="section in ctrl.chapter.sections">
-  <sections section="section"></sections>
-</div>
-
-<div ng-repeat="table in ctrl.chapter.tables">
-  <add-table table="table"></add-table>
-</div>
-
 <button class="btn btn-primary" ng-click="ctrl.addSection()">Add Section</button>
-<button class="btn btn-primary" ng-click="ctrl.addIntroduction()" ng-disabled="ctrl.introductionNumber > 0">Add Introduction</button>
-<button class="btn btn-primary" ng-click="ctrl.addTable()">Add Table</button><br/><br/>
+<button class="btn btn-primary" ng-click="ctrl.addIntroduction()" ng-if="ctrl.introductionNumber === 0">Add
+  Introduction
+</button>
+
+<button class="btn btn-danger" ng-click="ctrl.removeIntroduction()" ng-if="ctrl.introductionNumber === 1">
+  Remove Introduction <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+</button>
+
+<button class="btn btn-primary" ng-click="ctrl.addTable()">Add Table</button>
+
+<button class="btn btn-danger" ng-click="ctrl.removeChapter()">
+  Remove Chapter <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+</button><br/><br/>
+
+<div ng-if="ctrl.introductionNumber === 1">
+  <introduction chapter="ctrl.chapter"></introduction>
+</div>

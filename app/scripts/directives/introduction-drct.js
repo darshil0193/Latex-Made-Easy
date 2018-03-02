@@ -14,7 +14,7 @@ let IntroductionDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      introduction: '=',
+      chapter: '=',
     }
   };
 };
