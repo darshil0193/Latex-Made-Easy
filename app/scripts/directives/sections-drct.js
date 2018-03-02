@@ -15,9 +15,6 @@ let SectionsDirective = function() {
     bindToController: true,
     scope: {
       section: '=',
-    },
-    link: (scope, elem, attrs, ctrl) => {
-      console.log('added');
     }
   };
 };

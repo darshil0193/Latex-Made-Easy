@@ -15,7 +15,7 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
   this.$mdDialog = $mdDialog;
   this.$window = $window;
   this.StartupPageFact = StartupPageFact;
-  this.chapterNumber = 1;
+  this.chapterNumber = 0;
   this.frontBlockData = {
     title: {
       title: '',
@@ -34,13 +34,7 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
       abstract: ''
     },
     chapters: {
-      chapters: [{
-        id: 1,
-        sections: [{
-          id: 1,
-          data: ''
-        }]
-      }]
+      chapters: []
     }
   };
   this.pageNumber = 1;
@@ -59,13 +53,25 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
   };
 
   this.addChapter = () => {
-    this.chapterNumber++;
-    this.frontBlockData.chapters.chapters.push({
-      id: this.chapterNumber,
-      sections: [{
-        id: 1,
-        data: ''
-      }]
+    let confirm = this.$mdDialog.prompt()
+      .title('Chapter Name')
+      .textContent('Please provide a chapter name')
+      .placeholder('Chapter Name')
+      .initialValue('Chapter ' + (this.chapterNumber + 1))
+      .required(true)
+      .ok('Add')
+      .cancel('Cancel');
+
+    this.$mdDialog.show(confirm).then((result) => {
+
+      this.chapterNumber++;
+      this.frontBlockData.chapters.chapters.push({
+        id: this.chapterNumber,
+        name: result,
+        introduction: '',
+        sections: [],
+        tables: []
+      });
     });
   };
 
