@@ -108,10 +108,7 @@ app.post('/logInUser', (req, res) => {
   });
 });
 
-app.post('/getLatex', (req, res) => {
-  currentUser = req.body.currentUser;
-  delete req.body.currentUser;
-  let json = req.body;
+let getLatex = (json) => {
   let latexCode = '';
   for (let key in json) {
     let filename = key + '.html';
@@ -122,6 +119,15 @@ app.post('/getLatex', (req, res) => {
       latexCode += templateLatex + '\r\n';
     }
   }
+
+  return latexCode;
+};
+
+app.post('/getLatex', (req, res) => {
+  currentUser = req.body.currentUser;
+  delete req.body.currentUser;
+  let json = req.body;
+  let latexCode = getLatex(json);
 
   fs.writeFile(__dirname + '/latex_file.tex', latexCode, 'utf8', (err) => {
     if (err) throw err;
