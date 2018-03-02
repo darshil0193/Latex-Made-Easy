@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: AddtableCtrl', function () {
+describe('Controller: IntroductionCtrl', function () {
 
   // load the controller's module
   beforeEach(module('latexmadeeasyApp'));
 
-  var AddTableCtrl,
+  var IntroductionCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AddTableCtrl = $controller('AddTableCtrl', {
+    IntroductionCtrl = $controller('IntroductionCtrl', {
       $scope: scope
       // place here mocked dependencies
     });

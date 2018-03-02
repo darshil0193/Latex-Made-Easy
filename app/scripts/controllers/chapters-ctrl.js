@@ -9,8 +9,9 @@
  */
 let ChaptersController = function() {
   // this.numOfChapters = 0;
-  this.sectionNumber = 1;
-  this.tableNumber = 1;
+  this.sectionNumber = 0;
+  this.tableNumber = 0;
+  this.introductionNumber = 0;
 
   this.addSection = () => {
     // let chaptersElement = document.getElementById('chapters_div');
@@ -32,6 +33,11 @@ let ChaptersController = function() {
       columns: [],
       rows: []
     });
+  };
+
+  this.addIntroduction = () => {
+    this.introductionNumber++;
+    this.chapter.introduction = '';
   };
 };
 

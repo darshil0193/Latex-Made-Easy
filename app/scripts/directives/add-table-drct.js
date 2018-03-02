@@ -17,7 +17,8 @@ let AddTableDirective = function() {
       table: '=',
     },
     link: (scope) => {
-      console.log(scope);
+      scope.ctrl.gridOptions.columnDefs = scope.ctrl.table.columns;
+      scope.ctrl.gridOptions.data = scope.ctrl.table.rows;
     }
   };
 };
