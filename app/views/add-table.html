@@ -1,5 +1,26 @@
 <div>
-  <div ui-grid="ctrl.gridOptions" ui-grid-edit></div><br/><br/>
-  <button class="btn btn-primary" ng-click="ctrl.addColumn()">Add Column</button>
-  <button class="btn btn-primary" ng-click="ctrl.addRow()">Add Row</button><br/><br/>
+  <label>Please leave the complete row/column empty if you don't require it to be in the table</label><br/>
+  <label>{{ctrl.table.caption}}</label>
+  <div ng-hide="ctrl.hideGrid" ui-grid="ctrl.table.grid" ui-grid-edit ui-grid-cellNav></div><br/>
+  <div ng-hide="ctrl.hideGrid" ng-if="ctrl.table.grid.columnDefs.length > 0 && ctrl.table.grid.data.length > 0 && ctrl.isAddCaption">
+    <label>Caption: </label>
+    <input ng-model="ctrl.table.caption" type="text" class="form-control" placeholder="Caption Please">
+    <br/>
+  </div>
+  <button ng-hide="ctrl.hideGrid" class="btn btn-primary" ng-click="ctrl.addColumn()">Add Column</button>
+  <button ng-hide="ctrl.hideGrid" class="btn btn-primary" ng-click="ctrl.addRow()">Add Row</button>
+  <button
+    ng-if="ctrl.table.grid.columnDefs.length > 0 && ctrl.table.grid.data.length > 0 && !ctrl.captionAdded"
+    ng-hide="ctrl.hideGrid" class="btn btn-primary" ng-click="ctrl.addCaption()">Add Caption
+  </button>
+  <button class="btn btn-primary" ng-click="ctrl.hideGrid = !ctrl.hideGrid">
+    {{ctrl.hideGrid && 'Show' || 'Hide'}} Table
+  </button>
+  <button ng-hide="ctrl.hideGrid" class="btn btn-danger" ng-click="ctrl.removeCaption()" ng-if="ctrl.captionAdded">
+    Remove Caption <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+  <button class="btn btn-danger" ng-click="ctrl.removeTable()">
+    Remove Table <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+  <br/><br/>
 </div>

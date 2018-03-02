@@ -43,6 +43,26 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
     let requestObject = _.cloneDeep(frontBlockData);
     requestObject.title.date = frontBlockData.title.date.toDateString().substring(4);
     requestObject.currentUser = this.$rootScope.currentUser;
+
+    _.remove(requestObject.chapters.chapters, (data) => {
+      return data.deleted;
+    });
+
+    _.each(requestObject.chapters.chapters, (chapter) => {
+      _.remove(chapter.data, (data) => {
+        return data.deleted;
+      });
+
+    //  TODO: REMOVE EMPTY ROWS AND COLUMNS FROM THE TABLE
+    //  _.each(chapter.data, (module) => {
+    //     if(module.type === 'table') {
+    //       _.remove(module.grid.data, (row) => {
+    //
+    //       });
+    //     }
+    //   });
+    });
+
     this.StartupPageFact.getLatex(requestObject).then((data) => {
       let blob = new this.blob([data.data]);
       let fileName = data.headers()["content-disposition"].split("\"")[1];
@@ -57,20 +77,19 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
       .title('Chapter Name')
       .textContent('Please provide a chapter name')
       .placeholder('Chapter Name')
-      .initialValue('Chapter ' + (this.chapterNumber + 1))
+      .initialValue('New Chapter')
       .required(true)
       .ok('Add')
       .cancel('Cancel');
 
     this.$mdDialog.show(confirm).then((result) => {
-
       this.chapterNumber++;
       this.frontBlockData.chapters.chapters.push({
         id: this.chapterNumber,
         name: result,
         introduction: '',
-        sections: [],
-        tables: []
+        deleted: false,
+        data: [],
       });
     });
   };
