@@ -1,0 +1,10 @@
+<div class="form-group">
+  <label>Paragraph: {{ctrl.paragraph.id}}</label>
+  <textarea ng-hide="ctrl.hideParagraph" class="form-control" ng-model="ctrl.paragraph.text" rows="10"></textarea><br/>
+  <button class="btn btn-primary" ng-click="ctrl.hideParagraph = !ctrl.hideParagraph">
+    {{ctrl.hideParagraph && 'Show' || 'Hide'}} Paragraph
+  </button>
+  <button class="btn btn-danger" ng-click="ctrl.removeParagraph()">
+    Remove Paragraph <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+</div>

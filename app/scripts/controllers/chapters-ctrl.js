@@ -11,6 +11,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
   this.tableNumber = 0;
   this.introductionNumber = 0;
   this.moduleNumber = 0;
+  this.paragraphNumber = 0;
   this.$element = $element;
   this.$compile = $compile;
   this.$scope = $scope;
@@ -45,6 +46,25 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
       let ele = this.$compile('<sections section="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></sections>')(this.$scope);
       this.$element.append(ele);
     });
+  };
+
+  this.addParagraph = () => {
+    this.moduleNumber++;
+    this.paragraphNumber++;
+    if (!this.chapter.data) {
+      this.chapter.data = [];
+    }
+
+    this.chapter.data.push({
+      moduleId: this.moduleNumber,
+      id: this.paragraphNumber,
+      type: 'paragraph',
+      text: '',
+      deleted: false
+    });
+
+    let ele = this.$compile('<paragraph paragraph="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></paragraph>')(this.$scope);
+    this.$element.append(ele);
   };
 
   this.addTable = () => {

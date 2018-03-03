@@ -57,7 +57,7 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
     });
 
     _.each(requestObject.chapters.chapters, (chapter) => {
-      //Remove deleted sections and tables inside the chapters
+      //Remove deleted sections, tables and paragraphs inside the chapters
       _.remove(chapter.data, (data) => {
         return data.deleted;
       });
