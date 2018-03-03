@@ -1,12 +1,11 @@
 'use strict';
-
 let express = require('express');
 let path = require('path');
 let fs = require('fs');
 let hb = require('handlebars');
 let app = express();
 let MongoClient = require('mongodb').MongoClient;
-let uri = "mongodb+srv://admin:admin@latex-made-easy-xpqdu.mongodb.net/latex-made-easy-db";
+let uri = 'mongodb+srv://admin:admin@latex-made-easy-xpqdu.mongodb.net/latex-made-easy-db';
 let _ = require('lodash');
 let archiver = require('archiver');
 let nodemailer = require('nodemailer');
@@ -112,7 +111,7 @@ let getLatex = (json) => {
   //let json = JSON.parse(fs.readFileSync('backend/sample-jsons/maindump.json', 'utf8'));
   let latexCode = '';
   for (let key in json) {
-    if(key == "chapters") {
+    if (key === 'chapters') {
       continue;
     }
 
@@ -120,10 +119,11 @@ let getLatex = (json) => {
     let source = fs.readFileSync(path.resolve('backend/latex-handlers/' + filename), 'utf8');
     let template = hb.compile(source);
     let templateLatex = template(json[key]);
-    if(!_.isEmpty(templateLatex)) {
+    if (!_.isEmpty(templateLatex)) {
       latexCode += templateLatex + '\r\n';
     }
   }
+
   console.log(latexCode);
   return latexCode;
 };
@@ -134,12 +134,12 @@ app.post('/getLatex', (req, res) => {
   let json = req.body;
   let latexCode = getLatex(json);
 
-  fs.writeFile(__dirname + '/latex_file.tex', latexCode, 'utf8', (err) => {
+  fs.writeFile(__dirname + '/download-data/latex_file.tex', latexCode, 'utf8', (err) => {
     if (err) throw err;
     console.log('The file was successfully saved');
   });
 
-  let output = fs.createWriteStream(__dirname + '/all_files_' + currentUser + '.zip');
+  let output = fs.createWriteStream(__dirname + '/download-data/all_files_' + currentUser + '.zip');
   let archive = archiver('zip', {
     zlib: { level: 9 } // Sets the compression level.
   });
@@ -147,7 +147,7 @@ app.post('/getLatex', (req, res) => {
   output.on('close', function() {
     console.log(archive.pointer() + ' total bytes');
     console.log('archiver has been finalized and the output file descriptor has closed.');
-    res.download(__dirname + '/all_files_' + currentUser + '.zip');
+    res.download(__dirname + '/download-data/all_files_' + currentUser + '.zip');
   });
 
   output.on('end', function() {
@@ -157,6 +157,7 @@ app.post('/getLatex', (req, res) => {
   archive.on('warning', function(err) {
     if (err.code === 'ENOENT') {
       // log warning
+      console.log(err);
     } else {
       // throw error
       throw err;
@@ -169,9 +170,8 @@ app.post('/getLatex', (req, res) => {
 
   archive.pipe(output);
 
-
-  archive.file(__dirname + '/latex_file.tex', {name: 'latex_file.tex'});
-  archive.file(__dirname + '/class_file.cls', {name: 'class_file.cls'});
+  archive.file(__dirname + '/download-data/latex_file.tex', {name: 'latex_file.tex'});
+  archive.file(__dirname + '/download-data/class_file.cls', {name: 'class_file.cls'});
   archive.finalize();
 });
 
@@ -185,7 +185,6 @@ app.post('/sendEmail', (req, res) => {
     }
   });
 
-
   MongoClient.connect(uri, (err, client) => {
     const collection = client.db('latex-made-easy-db').collection('users');
     collection.findOne({username: username}, (err, item) => {
@@ -198,7 +197,7 @@ app.post('/sendEmail', (req, res) => {
           html: 'Your password for Latex Made Easy is: "<b>' + item.password + '</b>"'
         };
 
-        transporter.sendMail(mailOptions, function(error, info){
+        transporter.sendMail(mailOptions, function(error, info) {
           if (error) {
             res.status(400).send({error: 'EMAIL_NOT_SENT', err: error, email: item.email});
           } else {

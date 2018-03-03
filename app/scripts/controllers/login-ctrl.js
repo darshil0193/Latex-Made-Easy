@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc function
  * @name latexmadeeasyApp.controller:LoginCtrl
@@ -18,58 +17,59 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
   this.credentials = {
     username: '',
     password: '',
-    email:'',
+    email:''
   };
 
   this.updateErrors = (err) => {
-    if(err.data.error === 'PASS_LENGTH') {
+    if (err.data.error === 'PASS_LENGTH') {
       this.failureTitle = 'Password Error';
       this.failureMessage = 'Password should be at least 8 characters in length';
       this.credentials.password = '';
-    } else if(err.data.error === 'PASS_SPACE') {
+    } else if (err.data.error === 'PASS_SPACE') {
       this.failureTitle = 'Password Error';
       this.failureMessage = 'Password can not contain spaces';
       this.credentials.password = '';
-    } else if(err.data.error === 'PASS_CHARS') {
+    } else if (err.data.error === 'PASS_CHARS') {
       this.failureTitle = 'Password Error';
       this.failureMessage = 'Password cannot contain any of //, /* or */ patterns';
       this.credentials.password = '';
-    } else if(err.data.error === 'UNAME_TAKEN') {
+    } else if (err.data.error === 'UNAME_TAKEN') {
       this.failureTitle = 'Username Error';
       this.failureMessage = 'Username already taken. Please try something else';
       this.credentials.username = '';
-    } else if(err.data.error === 'EMAIL_USED') {
+    } else if (err.data.error === 'EMAIL_USED') {
       this.failureTitle = 'Email Error';
       this.failureMessage = 'Email ID already used. Please Login or try with a different email id';
       this.credentials.email = '';
-    } else if(err.data.error === 'PASS_INCORRECT') {
+    } else if (err.data.error === 'PASS_INCORRECT') {
       this.failureTitle = 'Password Error';
       this.failureMessage = 'Incorrect Password Entered';
       this.credentials.password = '';
-    } else if(err.data.error === 'USER_INCORRECT') {
+    } else if (err.data.error === 'USER_INCORRECT') {
       this.failureTitle = 'Username Error';
       this.failureMessage = 'Incorrect Username Entered. Such a user does not exist';
       this.credentials.password = '';
       this.credentials.username = '';
-    } else if(err.data.error === 'EMAIL_NOT_SENT') {
+    } else if (err.data.error === 'EMAIL_NOT_SENT') {
       this.failureTitle = 'Sorry!';
       this.failureMessage = 'There seems to be some trouble with sending the email';
-      if(!_.isEmpty(err.data.email)) {
+      if (!_.isEmpty(err.data.email)) {
         this.failureMessage += ' to ' + err.data.email;
       }
+
       this.failureMessage += '. We are working on it.';
     }
   };
 
   this.register = (credentials) => {
-    if(!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password) && !_.isEmpty(credentials.email)) {
+    if (!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password) && !_.isEmpty(credentials.email)) {
       this.LoginFact.registerUser(credentials).then(() => {
         this.successfulLogin = true;
         this.$rootScope.currentUser = this.credentials.username;
         this.credentials = {
           username: '',
           password: '',
-          email: '',
+          email: ''
         };
       }).catch((err) => {
         this.updateErrors(err);
@@ -86,14 +86,14 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
   };
 
   this.login = ((credentials) => {
-    if(!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password)) {
+    if (!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password)) {
       this.LoginFact.loginUser(credentials).then(() => {
         this.successfulLogin = true;
         this.$rootScope.currentUser = this.credentials.username;
         this.credentials = {
           username: '',
           password: '',
-          email: '',
+          email: ''
         };
       }).catch((err) => {
         this.updateErrors(err);
@@ -128,7 +128,7 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
   };
 
   this.sendEmail = (credentials) => {
-    if(!_.isEmpty(credentials.username)) {
+    if (!_.isEmpty(credentials.username)) {
       this.LoginFact.sendEmail(credentials).then((data) => {
         this.$mdDialog.show(
           this.$mdDialog.alert()

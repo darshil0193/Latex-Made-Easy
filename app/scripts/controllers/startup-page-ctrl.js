@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc function
  * @name latexmadeeasyApp.controller:StartupPageCtrl
@@ -22,7 +21,7 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
       author: '',
       college: '',
       degree: '',
-      date: new Date(),
+      date: new Date()
     },
     dedication: {
       dedication: ''
@@ -64,7 +63,7 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
       });
 
       _.each(chapter.data, (module) => {
-        if(module.type === 'table') {
+        if (module.type === 'table') {
           module.grid.columns = _.map(module.grid.columnDefs, (column) => {
             return column.name;
           });
@@ -74,64 +73,68 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
             return _.map(module.grid.columnDefs, (column) => {
               return row[column.name];
             });
+
             // return rowData;
           });
         }
       });
 
-  //     //Remove empty columns and rows from table
-  //     _.each(chapter.data, (module) => {
-  //       if(module.type === 'table') {
-  //         //Remove empty rows from table
-  //         _.remove(module.grid.data, (row) => {
-  //           let columns = _.map(module.grid.columnDefs, (column) => {
-  //             return column.name;
-  //           });
-  //           let deleteRow = true;
-  //           _.each(columns, (column) => {
-  //             if(!_.isEmpty(row[column])) {
-  //               deleteRow = false;
-  //             }
-  //           });
-  //           return deleteRow;
-  //         });
-  //
-  //         //Remove empty columns from table
-  //         _.remove(module.grid.columnDefs, (column) => {
-  //           let deleteColumn = true;
-  //           _.each(module.grid.data, (row) => {
-  //             if(!_.isEmpty(row[column.name])) {
-  //               deleteColumn = false;
-  //             }
-  //           });
-  //
-  //           if(deleteColumn) {
-  //             _.each(module.grid.data, (row) => {
-  //               delete(row[column.name]);
-  //             });
-  //           }
-  //           return deleteColumn;
-  //         });
-  //       }
-  //     });
+      //     //Remove empty columns and rows from table
+      //     _.each(chapter.data, (module) => {
+      //       if(module.type === 'table') {
+      //         //Remove empty rows from table
+      //         _.remove(module.grid.data, (row) => {
+      //           let columns = _.map(module.grid.columnDefs, (column) => {
+      //             return column.name;
+      //           });
+      //           let deleteRow = true;
+      //           _.each(columns, (column) => {
+      //             if(!_.isEmpty(row[column])) {
+      //               deleteRow = false;
+      //             }
+      //           });
+      //           return deleteRow;
+      //         });
+      //
+      //         //Remove empty columns from table
+      //         _.remove(module.grid.columnDefs, (column) => {
+      //           let deleteColumn = true;
+      //           _.each(module.grid.data, (row) => {
+      //             if(!_.isEmpty(row[column.name])) {
+      //               deleteColumn = false;
+      //             }
+      //           });
+      //
+      //           if(deleteColumn) {
+      //             _.each(module.grid.data, (row) => {
+      //               delete(row[column.name]);
+      //             });
+      //           }
+      //           return deleteColumn;
+      //         });
+      //       }
+      //     });
     });
-  //
-  //   removeEmptyAttributes(requestObject);
+
+    //
+    //   removeEmptyAttributes(requestObject);
   };
 
   this.getLatex = (frontBlockData) => {
     // let requestObject = _.cloneDeep(frontBlockData);
     let requestObject = frontBlockData;
-    if(!_.isString(frontBlockData.title.date)) {
+    if (!_.isString(frontBlockData.title.date)) {
       requestObject.title.date = frontBlockData.title.date.toDateString().substring(4);
     }
+
     requestObject.currentUser = this.$rootScope.currentUser;
     sanitizeRequest(requestObject);
+
     // sanitizeRequest(requestObject.title);
 
     this.StartupPageFact.getLatex(requestObject).then((data) => {
       let blob = new this.blob([data.data]);
-      let fileName = data.headers()["content-disposition"].split("\"")[1];
+      let fileName = data.headers()['content-disposition'].split('"')[1];
       this.fileSaver.saveAs(blob, fileName);
     }).catch((err) => {
       console.log(err.data);
@@ -150,15 +153,16 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
 
     this.$mdDialog.show(confirm).then((result) => {
       this.chapterNumber++;
-      if(!this.frontBlockData.chapters.chapters) {
+      if (!this.frontBlockData.chapters.chapters) {
         this.frontBlockData.chapters.chapters = [];
       }
+
       this.frontBlockData.chapters.chapters.push({
         id: this.chapterNumber,
         name: result,
         introduction: '',
         deleted: false,
-        data: [],
+        data: []
       });
     });
   };

@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:chapters
@@ -14,7 +13,7 @@ let ChaptersDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      chapter: '=',
+      chapter: '='
     }
   };
 };

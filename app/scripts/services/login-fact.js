@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc service
  * @name latexmadeeasyApp.loginFact
@@ -14,7 +13,7 @@ let LoginFactory = function($http) {
     return this.$http.post('https://latex-made-easy-backend.herokuapp.com/registerUser', {
       username: credentials.username,
       password: credentials.password,
-      email: credentials.email,
+      email: credentials.email
     });
   };
 
@@ -22,7 +21,7 @@ let LoginFactory = function($http) {
     return this.$http.post('https://latex-made-easy-backend.herokuapp.com/loginUser', {
       username: credentials.username,
       password: credentials.password,
-      email: credentials.email,
+      email: credentials.email
     });
   };
 

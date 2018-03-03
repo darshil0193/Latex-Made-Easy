@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:abstract
@@ -14,7 +13,7 @@ let AbstractDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      abstract: '=',
+      abstract: '='
     }
   };
 };

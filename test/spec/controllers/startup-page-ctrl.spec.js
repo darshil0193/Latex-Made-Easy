@@ -1,23 +1,22 @@
 'use strict';
-
-describe('Controller: StartupPageCtrl', function () {
+describe('Controller: StartupPageCtrl', function() {
 
   // load the controller's module
   beforeEach(module('latexmadeeasyApp'));
 
-  var StartupPageCtrl,
-    scope;
+  let StartupPageCtrl, scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope.$new();
     StartupPageCtrl = $controller('StartupPageCtrl', {
       $scope: scope
+
       // place here mocked dependencies
     });
   }));
 
-  it('should pass', function () {
+  it('should pass', function() {
     expect(true).toBe(true);
   });
 });

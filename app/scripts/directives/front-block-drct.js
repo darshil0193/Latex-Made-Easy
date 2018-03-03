@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:frontBlock

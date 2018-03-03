@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:addTable
@@ -14,8 +13,8 @@ let AddTableDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      table: '=',
-    },
+      table: '='
+    }
   };
 };
 

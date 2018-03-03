@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc overview
  * @name latexmadeeasyApp
@@ -20,7 +19,7 @@ angular
     'ngMaterial',
     'ngFileSaver',
     'ui.grid',
-    'ui.grid.edit',
+    'ui.grid.edit'
   ])
   .config(($routeProvider) => {
     $routeProvider

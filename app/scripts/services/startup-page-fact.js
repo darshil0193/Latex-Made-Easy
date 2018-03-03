@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc service
  * @name latexmadeeasyApp.startupPage
@@ -15,12 +14,12 @@ let StartupPageFactory = function($http) {
       url: 'https://latex-made-easy-backend.herokuapp.com/getLatex',
       method: 'POST',
       data: reqObject,
-      responseType: 'blob',
+      responseType: 'blob'
     });
   };
 
   return {
-    getLatex: this.getLatex,
+    getLatex: this.getLatex
   };
 };
 

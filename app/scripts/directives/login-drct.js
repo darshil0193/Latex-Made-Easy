@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:login
@@ -14,7 +13,7 @@ let LoginDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      successfulLogin: "="
+      successfulLogin: '='
     }
   };
 };

@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:section
@@ -14,7 +13,7 @@ let SectionsDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      section: '=',
+      section: '='
     }
   };
 };

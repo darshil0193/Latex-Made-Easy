@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc function
  * @name latexmadeeasyApp.controller:AddtableCtrl
@@ -30,7 +29,7 @@ let AddTableController = function($mdDialog, $element, $scope) {
         name: result
       };
 
-      for(let i=0; i<this.table.grid.data.length; ++i) {
+      for (let i = 0; i < this.table.grid.data.length; ++i) {
         this.table.grid.data[i][column.name] = 'Double Click to Edit';
       }
 
@@ -40,7 +39,7 @@ let AddTableController = function($mdDialog, $element, $scope) {
 
   this.addRow = () => {
     let row = {};
-    for(let i=0; i<this.table.grid.columnDefs.length; ++i) {
+    for (let i = 0; i < this.table.grid.columnDefs.length; ++i) {
       row[this.table.grid.columnDefs[i].name] = 'Double Click to Edit';
     }
 

@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc function
  * @name latexmadeeasyApp.controller:ChaptersCtrl
@@ -30,9 +29,10 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
     this.$mdDialog.show(confirm).then((result) => {
       this.moduleNumber++;
       this.sectionNumber++;
-      if(!this.chapter.data) {
+      if (!this.chapter.data) {
         this.chapter.data = [];
       }
+
       this.chapter.data.push({
         moduleId: this.moduleNumber,
         id: this.sectionNumber,
@@ -50,9 +50,10 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
   this.addTable = () => {
     this.moduleNumber++;
     this.tableNumber++;
-    if(!this.chapter.data) {
+    if (!this.chapter.data) {
       this.chapter.data = [];
     }
+
     this.chapter.data.push({
       moduleId: this.moduleNumber,
       id: this.tableNumber,
@@ -66,7 +67,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
         enableSorting: false,
         columnDefs: [],
         data: []
-      },
+      }
     });
 
     let ele = this.$compile('<add-table table="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></add-table>')(this.$scope);

@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:introduction
@@ -14,7 +13,7 @@ let IntroductionDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      chapter: '=',
+      chapter: '='
     }
   };
 };

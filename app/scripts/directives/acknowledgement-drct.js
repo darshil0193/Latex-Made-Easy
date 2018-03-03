@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc directive
  * @name latexmadeeasyApp.directive:acknowledgement
@@ -14,7 +13,7 @@ let AcknowledgementDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      acknowledge: '=',
+      acknowledge: '='
     }
   };
 };
