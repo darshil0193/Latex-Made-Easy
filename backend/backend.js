@@ -6,7 +6,7 @@ let hb = require('handlebars');
 let app = express();
 let MongoClient = require('mongodb').MongoClient;
 let uri = 'mongodb+srv://admin:admin@latex-made-easy-xpqdu.mongodb.net/latex-made-easy-db';
-let _ = require('lodash');
+let _ = require('lodash'); // jshint ignore:line
 let archiver = require('archiver');
 let nodemailer = require('nodemailer');
 let currentUser = '';
@@ -31,21 +31,21 @@ app.get('/', (req, res) => {
 
 let passwordCheck = (password) => {
   if (password.length < 8) {
-    return {
+    return ({
       error: 'PASS_LENGTH'
-    }
+    });
   } else if (password.includes(' ')) {
-    return {
+    return ({
       error: 'PASS_SPACE'
-    }
+    });
   } else if (password.includes('//') || password.includes('/*') || password.includes('*/')) {
-    return {
+    return ({
       error: 'PASS_CHARS'
-    }
+    });
   } else {
-    return {
+    return ({
       error: ''
-    }
+    });
   }
 };
 
@@ -68,7 +68,7 @@ app.post('/registerUser', (req, res) => {
           } else {
             let passCheck = passwordCheck(password);
             if (_.isEmpty(passCheck.error)) {
-              collection.insert({username: username, password: password, email: email}, (err, item) => {
+              collection.insert({username: username, password: password, email: email}, (err) => {
                 client.close();
                 if (err === null) {
                   res.status(200).send({data: 'Added to the database'});
@@ -135,7 +135,10 @@ app.post('/getLatex', (req, res) => {
   let latexCode = getLatex(json);
 
   fs.writeFile(__dirname + '/download-data/latex_file.tex', latexCode, 'utf8', (err) => {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
+
     console.log('The file was successfully saved');
   });
 
@@ -197,7 +200,7 @@ app.post('/sendEmail', (req, res) => {
           html: 'Your password for Latex Made Easy is: "<b>' + item.password + '</b>"'
         };
 
-        transporter.sendMail(mailOptions, function(error, info) {
+        transporter.sendMail(mailOptions, function(error) {
           if (error) {
             res.status(400).send({error: 'EMAIL_NOT_SENT', err: error, email: item.email});
           } else {

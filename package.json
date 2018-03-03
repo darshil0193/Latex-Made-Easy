@@ -2,7 +2,9 @@
   "name": "latexmadeeasy",
   "private": true,
   "scripts": {
-    "start": "node backend/backend.js"
+    "start": "node backend/backend.js",
+    "clean": "npm cache clean --force && bower cache clean && rm -rf dist .tmp",
+    "release": "npm run clean && npm install && bower install && grunt default"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
