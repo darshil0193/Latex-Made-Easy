@@ -1,13 +1,13 @@
 \begin{table}[h!]
-  \caption { {{table.caption}} }
+  \caption { {{grid.caption}} }
   \centering
   \begin{tabular} {||c c c c||}
     \hline
-    {{#each table.header}}
+    {{#each grid.columns}}
       {{ this }} &
     {{/each}} \\
     \hline\hline
-    {{#each table.data}}
+    {{#each grid.rows}}
       {{#each this}}
         {{this}} &
         {{/each}} \\
