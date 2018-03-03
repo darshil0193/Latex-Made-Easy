@@ -108,23 +108,74 @@ app.post('/logInUser', (req, res) => {
   });
 });
 
+let getChapterLatex = (json) => {
+  let chapterJson = {'chapter': {}, 'sections':[]};
+  chapterJson['chapter']['name'] = json['name'];
+  chapterJson['chapter']['introduction'] = json['introduction'];
+  let data = json['data'];
+  let curSec = {};
+  let sectionFound = false;
+  let tableLatex = '';
+  for(let index in data){
+    let curItem = data[index];
+    if (curItem['type'] == 'section'){
+      sectionFound = true;
+      if (Object.keys(curSec).length != 0)
+        chapterJson['sections'].push(curSec);
+      curSec = {};
+      curSec['name'] = curItem['name'];
+      curSec['text'] = curItem['text'];
+    }
+
+    else if(curItem['type'] == 'table'){
+      tableLatex = getTableLatex(curItem);
+      if(sectionFound){
+        curSec['text'] += '\n' + tableLatex;
+      }else{
+        chapterJson['chapter']['introduction'] += tableLatex;
+      }
+    }
+
+  }
+  if(Object.keys(curSec).length != 0)
+    chapterJson['sections'].push(curSec);
+    console.log('-----------------------------------------')
+    console.log(chapterJson);
+}
+
+let getTableLatex = (json) => {
+  let source = fs.readFileSync(path.resolve('backend/latex-handlers/table.html'), 'utf8');
+  let template = hb.compile(source);
+  let templateLatex = template(json);
+  return templateLatex;
+}
+
+let getChaptersLatex = (json) => {
+  let templateLatex = '';
+  for(var chapter in json['chapters']){
+    templateLatex += getChapterLatex(json['chapters'][chapter]);
+  }
+}
+
 let getLatex = (json) => {
   //let json = JSON.parse(fs.readFileSync('backend/sample-jsons/maindump.json', 'utf8'));
   let latexCode = '';
+  let templateLatex = '';
   for (let key in json) {
-    if(key == "chapters") {
-      continue;
+    if(key == 'chapters') {
+      templateLatex = getChaptersLatex(json['chapters']);
     }
-
-    let filename = key + '.html';
-    let source = fs.readFileSync(path.resolve('backend/latex-handlers/' + filename), 'utf8');
-    let template = hb.compile(source);
-    let templateLatex = template(json[key]);
+    else{
+      let filename = key + '.html';
+      let source = fs.readFileSync(path.resolve('backend/latex-handlers/' + filename), 'utf8');
+      let template = hb.compile(source);
+      templateLatex = template(json[key]);
+    }
     if(!_.isEmpty(templateLatex)) {
       latexCode += templateLatex + '\r\n';
     }
   }
-  console.log(latexCode);
+  // console.log(latexCode);
   return latexCode;
 };
 
