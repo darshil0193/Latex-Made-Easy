@@ -1,0 +1,139 @@
+{
+  "title": {
+    "title": "This is title",
+    "author": "This is author",
+    "college": "This is college",
+    "degree": "This is degree",
+    "date": "Mar 02 2018"
+  },
+  "dedication": {
+    "dedication": "This is dedication"
+  },
+  "acknowledge": {
+    "acknowledge": "This is acknowledgement"
+  },
+  "abstract": {
+    "abstract": "This is abstract"
+  },
+  "chapters": {
+    "chapters": [
+      {
+        "id": 1,
+        "name": "First Chapter",
+        "introduction": "This is introduction of \"First Chapter\"",
+        "deleted": false,
+        "data": [
+          {
+            "moduleId": 1,
+            "id": 1,
+            "name": "Section 1 of Chapter 1",
+            "type": "section",
+            "text": "",
+            "deleted": false,
+            "data": "This is first section of first chapter"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Second Chapter",
+        "introduction": "This is introduction of \"Second Chapter\"",
+        "deleted": false,
+        "data": [
+          {
+            "moduleId": 1,
+            "id": 1,
+            "type": "table",
+            "caption": "New Table",
+            "deleted": false,
+            "grid": {
+              "enableColumnMenus": false,
+              "selectionRowHeaderWidth": 35,
+              "rowHeight": 35,
+              "enableSorting": false,
+              "columnDefs": [
+                {
+                  "name": "First Column",
+                  "enableCellEdit": true,
+                  "cellEditableCondition": true,
+                  "editableCellTemplate": "ui-grid/cellEditor",
+                  "enableCellEditOnFocus": false,
+                  "type": "string"
+                },
+                {
+                  "name": "Second Column",
+                  "enableCellEdit": true,
+                  "cellEditableCondition": true,
+                  "editableCellTemplate": "ui-grid/cellEditor",
+                  "enableCellEditOnFocus": false,
+                  "type": "string"
+                }
+              ],
+              "data": [
+                {
+                  "First Column": "Column 1 Row 1 Data",
+                  "Second Column": "Column 2 Row 1 Data"
+                },
+                {
+                  "First Column": "Column 1 Row 2 Data",
+                  "Second Column": "Column 2 Row 2 Data"
+                }
+              ],
+              "excludeProperties": [
+                "$$hashKey"
+              ],
+              "enableRowHashing": true,
+              "flatEntityAccess": false,
+              "showHeader": true,
+              "headerRowHeight": 30,
+              "minRowsToShow": 10,
+              "showGridFooter": false,
+              "showColumnFooter": false,
+              "columnFooterHeight": 30,
+              "gridFooterHeight": 30,
+              "columnWidth": 50,
+              "maxVisibleColumnCount": 200,
+              "virtualizationThreshold": 20,
+              "columnVirtualizationThreshold": 10,
+              "excessRows": 4,
+              "scrollThreshold": 4,
+              "excessColumns": 4,
+              "horizontalScrollThreshold": 2,
+              "aggregationCalcThrottle": 500,
+              "wheelScrollThrottle": 70,
+              "scrollDebounce": 300,
+              "enableFiltering": false,
+              "enableVerticalScrollbar": 1,
+              "enableHorizontalScrollbar": 1,
+              "enableMinHeightCheck": true,
+              "minimumColumnSize": 10,
+              "headerTemplate": null,
+              "footerTemplate": "ui-grid/ui-grid-footer",
+              "gridFooterTemplate": "ui-grid/ui-grid-grid-footer",
+              "rowTemplate": "ui-grid/ui-grid-row",
+              "gridMenuTemplate": "ui-grid/uiGridMenu",
+              "appScopeProvider": null,
+              "cellEditableCondition": true,
+              "enableCellEditOnFocus": false,
+              "columns": [
+                "First Column",
+                "Second Column"
+              ],
+              "rows": [
+                [
+                  "Column 1 Row 1 Data",
+                  "Column 2 Row 1 Data"
+                ],
+                [
+                  "Column 1 Row 2 Data",
+                  "Column 2 Row 2 Data"
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "currentUser": "dpatel14"
+}
