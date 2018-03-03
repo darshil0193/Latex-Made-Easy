@@ -109,8 +109,13 @@ app.post('/logInUser', (req, res) => {
 });
 
 let getLatex = (json) => {
+  //let json = JSON.parse(fs.readFileSync('backend/sample-jsons/maindump.json', 'utf8'));
   let latexCode = '';
   for (let key in json) {
+    if(key == "chapters") {
+      continue;
+    }
+
     let filename = key + '.html';
     let source = fs.readFileSync(path.resolve('backend/latex-handlers/' + filename), 'utf8');
     let template = hb.compile(source);
@@ -119,7 +124,7 @@ let getLatex = (json) => {
       latexCode += templateLatex + '\r\n';
     }
   }
-
+  console.log(latexCode);
   return latexCode;
 };
 
