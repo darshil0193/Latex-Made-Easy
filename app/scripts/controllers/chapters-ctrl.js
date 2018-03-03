@@ -30,6 +30,9 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
     this.$mdDialog.show(confirm).then((result) => {
       this.moduleNumber++;
       this.sectionNumber++;
+      if(!this.chapter.data) {
+        this.chapter.data = [];
+      }
       this.chapter.data.push({
         moduleId: this.moduleNumber,
         id: this.sectionNumber,
@@ -47,6 +50,9 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
   this.addTable = () => {
     this.moduleNumber++;
     this.tableNumber++;
+    if(!this.chapter.data) {
+      this.chapter.data = [];
+    }
     this.chapter.data.push({
       moduleId: this.moduleNumber,
       id: this.tableNumber,

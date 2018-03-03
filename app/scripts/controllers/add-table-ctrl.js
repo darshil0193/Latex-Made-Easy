@@ -31,7 +31,7 @@ let AddTableController = function($mdDialog, $element, $scope) {
       };
 
       for(let i=0; i<this.table.grid.data.length; ++i) {
-        this.table.grid.data[i][column.name] = 'Click to Edit';
+        this.table.grid.data[i][column.name] = 'Double Click to Edit';
       }
 
       this.table.grid.columnDefs.push(column);
@@ -41,7 +41,7 @@ let AddTableController = function($mdDialog, $element, $scope) {
   this.addRow = () => {
     let row = {};
     for(let i=0; i<this.table.grid.columnDefs.length; ++i) {
-      row[this.table.grid.columnDefs[i].name] = 'Click to Edit';
+      row[this.table.grid.columnDefs[i].name] = 'Double Click to Edit';
     }
 
     this.table.grid.data.push(row);
