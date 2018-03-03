@@ -21,7 +21,7 @@ let StartupPageFactory = function($http) {
 
   return {
     getLatex: this.getLatex,
-  }
+  };
 };
 
 angular.module('latexmadeeasyApp').factory('StartupPageFact', StartupPageFactory);

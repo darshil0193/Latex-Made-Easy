@@ -25,7 +25,7 @@ let SectionsController = function($mdDialog, $element, $scope) {
       this.$element.remove();
       this.$scope.$destroy();
     });
-  }
+  };
 };
 
 angular.module('latexmadeeasyApp').controller('SectionsCtrl', SectionsController);
