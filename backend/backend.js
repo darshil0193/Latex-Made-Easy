@@ -108,12 +108,14 @@ app.post('/logInUser', (req, res) => {
   });
 });
 
-app.post('/getLatex', (req, res) => {
-  currentUser = req.body.currentUser;
-  delete req.body.currentUser;
-  let json = req.body;
+let getLatex = (json) => {
+  //let json = JSON.parse(fs.readFileSync('backend/sample-jsons/maindump.json', 'utf8'));
   let latexCode = '';
   for (let key in json) {
+    if(key == "chapters") {
+      continue;
+    }
+
     let filename = key + '.html';
     let source = fs.readFileSync(path.resolve('backend/latex-handlers/' + filename), 'utf8');
     let template = hb.compile(source);
@@ -122,6 +124,15 @@ app.post('/getLatex', (req, res) => {
       latexCode += templateLatex + '\r\n';
     }
   }
+  console.log(latexCode);
+  return latexCode;
+};
+
+app.post('/getLatex', (req, res) => {
+  currentUser = req.body.currentUser;
+  delete req.body.currentUser;
+  let json = req.body;
+  let latexCode = getLatex(json);
 
   fs.writeFile(__dirname + '/latex_file.tex', latexCode, 'utf8', (err) => {
     if (err) throw err;

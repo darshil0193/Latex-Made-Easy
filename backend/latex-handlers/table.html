@@ -1,17 +1,16 @@
 \begin{table}[h!]
-\caption { {{table.caption}} }
-\centering
-\begin{tabular} {||c c c c||}
-\hline
-{{#each table.header}}
-{{ this }} &
-{{/each}} \\
-\hline\hline
-{{#each table.data}}
-{{#each this}}
-{{this}} &
-{{/each}} \\
-{{/each}}
-\end{tabular}
-
+  \caption { {{table.caption}} }
+  \centering
+  \begin{tabular} {||c c c c||}
+    \hline
+    {{#each table.header}}
+      {{ this }} &
+    {{/each}} \\
+    \hline\hline
+    {{#each table.data}}
+      {{#each this}}
+        {{this}} &
+        {{/each}} \\
+    {{/each}}
+  \end{tabular}
 \end{table}
