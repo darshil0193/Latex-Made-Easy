@@ -12,6 +12,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
   this.introductionNumber = 0;
   this.moduleNumber = 0;
   this.paragraphNumber = 0;
+  this.listNumber = 0;
   this.$element = $element;
   this.$compile = $compile;
   this.$scope = $scope;
@@ -64,6 +65,29 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
     });
 
     let ele = this.$compile('<paragraph paragraph="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></paragraph>')(this.$scope);
+    this.$element.append(ele);
+  };
+
+  this.addList = () => {
+    this.moduleNumber++;
+    this.listNumber++;
+    if (!this.chapter.data) {
+      this.chapter.data = [];
+    }
+
+    this.chapter.data.push({
+      moduleId: this.moduleNumber,
+      id: this.listNumber,
+      type: 'list',
+      items: [{
+        id: 1,
+        text: ''
+      }],
+      deleted: false,
+      ordered: false
+    });
+
+    let ele = this.$compile('<add-list list="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></add-list>')(this.$scope);
     this.$element.append(ele);
   };
 

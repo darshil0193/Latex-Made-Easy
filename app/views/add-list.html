@@ -1,0 +1,24 @@
+<div class="form-group">
+  <label>List: {{ctrl.list.id}}</label>
+
+  <div class="radio" ng-hide="ctrl.hideList">
+    <label><input type="radio" ng-model="ctrl.list.ordered" ng-value="false">Unordered</label>
+    <label><input type="radio" ng-model="ctrl.list.ordered" ng-value="true">Ordered</label>
+  </div>
+
+  <div ng-repeat="item in ctrl.list.items" ng-hide="ctrl.hideList">
+    Item: {{item.id}}<input type="text" class="form-control" ng-model="item.text">
+  </div><br/>
+
+  <button class="btn btn-primary" ng-click="ctrl.hideList = !ctrl.hideList">
+    {{ctrl.hideList && 'Show' || 'Hide'}} List
+  </button>
+
+  <button class="btn btn-primary" ng-click="ctrl.addItem()">
+    Add Item
+  </button>
+
+  <button class="btn btn-danger" ng-click="ctrl.removeList()">
+    Remove List <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+</div>
