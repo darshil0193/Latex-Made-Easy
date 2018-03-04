@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: paragraph', function () {
+describe('Directive: paragraph', function() {
 
   // load the directive's module
   beforeEach(module('latexmadeeasyApp'));
@@ -8,13 +8,13 @@ describe('Directive: paragraph', function () {
   var element,
     scope;
 
-  beforeEach(inject(function ($rootScope) {
+  beforeEach(inject(function($rootScope) {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
+  it('should make hidden element visible', inject(function($compile) {
     element = angular.element('<paragraph></paragraph>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the paragraph directive');
+    expect(element.text()).toBe('');
   }));
 });
