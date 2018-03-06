@@ -14,6 +14,9 @@ let IntroductionDirective = function() {
     bindToController: true,
     scope: {
       chapter: '='
+    },
+    link: (scope, element, attr) => {
+      attr.$$element[0].children[0].children[1].focus();
     }
   };
 };
