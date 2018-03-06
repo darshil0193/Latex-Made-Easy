@@ -14,6 +14,9 @@ let AbstractDirective = function() {
     bindToController: true,
     scope: {
       abstract: '='
+    },
+    link: (scope, element, attr, ctrl) => {
+      attr.$$element[0].children[0].children[1].focus();
     }
   };
 };

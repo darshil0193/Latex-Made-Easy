@@ -15,6 +15,9 @@ let ParagraphDirective = function() {
     bindToController: true,
     scope: {
       paragraph: '='
+    },
+    link: (scope, element, attr) => {
+      attr.$$element[0].children[0].children[1].focus();
     }
   };
 };

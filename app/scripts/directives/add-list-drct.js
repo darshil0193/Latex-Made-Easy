@@ -15,9 +15,6 @@ let AddListDirective = function() {
     bindToController: true,
     scope: {
       list: '='
-    },
-    link: (scope) => {
-      console.log(scope);
     }
   };
 };

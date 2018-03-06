@@ -14,6 +14,9 @@ let DedicationDirective = function() {
     bindToController: true,
     scope: {
       dedication: '='
+    },
+    link: (scope, element, attr, ctrl) => {
+      attr.$$element[0].children[0].children[1].focus();
     }
   };
 };

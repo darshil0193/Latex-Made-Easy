@@ -7,13 +7,13 @@
 
 <form name="main_form">
 
-  <front-block ng-show="ctrl.pageNumber === 1" title="ctrl.frontBlockData.title"></front-block>
+  <front-block ng-if="ctrl.pageNumber === 1" title="ctrl.frontBlockData.title"></front-block>
 
-  <dedication ng-show="ctrl.pageNumber === 2" dedication="ctrl.frontBlockData.dedication"></dedication>
+  <dedication ng-if="ctrl.pageNumber === 2" dedication="ctrl.frontBlockData.dedication" ng-focus="ctrl.pageNumber === 2"></dedication>
 
-  <acknowledgement ng-show="ctrl.pageNumber === 3" acknowledge="ctrl.frontBlockData.acknowledge"></acknowledgement>
+  <acknowledgement ng-if="ctrl.pageNumber === 3" acknowledge="ctrl.frontBlockData.acknowledge"></acknowledgement>
 
-  <abstract ng-show="ctrl.pageNumber === 4" abstract="ctrl.frontBlockData.abstract"></abstract>
+  <abstract ng-if="ctrl.pageNumber === 4" abstract="ctrl.frontBlockData.abstract"></abstract>
 
   <!--<chapters ng-show="ctrl.pageNumber === 5" chapters="ctrl.frontBlockData.chapters"></chapters>-->
   <div ng-repeat="chapter in ctrl.frontBlockData.chapters.chapters" ng-if="ctrl.pageNumber >= 5">

@@ -14,6 +14,9 @@ let FrontBlockDirective = function() {
     bindToController: true,
     scope: {
       title: '='
+    },
+    link: (scope, element, attr) => {
+      attr.$$element[0].children[0].children[1].focus();
     }
   };
 };
