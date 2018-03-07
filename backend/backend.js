@@ -130,17 +130,22 @@ let getChapterLatex = (json) => {
     else if(curItem['type'] == 'table'){
       tableLatex = getTableLatex(curItem);
       if(sectionFound){
-        curSec['text'] += '\n' + tableLatex;
+        curSec['text'] +=  tableLatex;
       }else{
         chapterJson['chapter']['introduction'] += tableLatex;
       }
+      tableLatex = '';
     }
 
   }
-  if(Object.keys(curSec).length != 0)
+  if(Object.keys(curSec).length != 0){
     chapterJson['sections'].push(curSec);
-    console.log('-----------------------------------------')
-    console.log(chapterJson);
+  }
+
+  console.log('-----------------------------------------')
+  console.log(chapterJson);
+
+
 }
 
 let getTableLatex = (json) => {
