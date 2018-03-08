@@ -13,7 +13,8 @@ let LoginDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      successfulLogin: '='
+      successfulLogin: '=',
+      frontBlockData: '='
     }
   };
 };

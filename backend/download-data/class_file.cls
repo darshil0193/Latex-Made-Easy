@@ -4,7 +4,7 @@
 % Version 1.0 released 26/11/1997
 %-------------------------- identification ---------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ociamthesis}[2010/11/22 v2.2 OCIAM thesis class]
+\ProvidesClass{class_file}[2010/11/22 v2.2 OCIAM thesis class]
 %-------------------------- initial code -----------------------
 \def\logoversion{squarelogo}
 \DeclareOption{beltcrest}{\def\logoversion{beltcrest}}
@@ -65,7 +65,7 @@
 {
 % Latest Logo, Square version (the default!)
 % you need an oxlogo.eps or oxlogo.pdf file as appropriate
-\def\logo{{\includegraphics[width=32mm]{oxlogo}}}
+\def\logo{{\includegraphics[width=32mm]{ncsu}}}
 }{}
 
 %
@@ -106,7 +106,7 @@
 {\large \vspace*{1ex}
     {{\@college} \par}
 \vspace*{1ex}
-    {University of Oxford \par}
+    {North Carolina State University \par}
 \vspace*{25mm}
     {{\submittedtext} \par}
 \vspace*{1ex}
@@ -233,7 +233,7 @@
     {{\large \vspace*{1ex} \@author} \par}
 {\large \vspace*{1ex}
     {{\@college} \par}
-    {University of Oxford \par}
+    {North Carolina State University \par}
 \vspace*{1ex}
     {{\it \submittedtext} \par}
     {\it {\@degree} \par}

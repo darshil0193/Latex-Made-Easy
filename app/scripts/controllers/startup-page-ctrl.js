@@ -14,41 +14,7 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
   this.$mdDialog = $mdDialog;
   this.$window = $window;
   this.StartupPageFact = StartupPageFact;
-  this.chapterNumber = 0;
-  this.frontBlockData = {
-    title: {
-      title: '',
-      author: '',
-      college: '',
-      degree: '',
-      date: new Date()
-    },
-    dedication: {
-      dedication: ''
-    },
-    acknowledge: {
-      acknowledge:''
-    },
-    abstract: {
-      abstract: ''
-    },
-    chapters: {
-      chapters: []
-    }
-  };
   this.pageNumber = 1;
-
-  // let removeEmptyAttributes = (requestObject) => {
-  //   _.each(_.keys(requestObject), (key) => {
-  //     if(!_.isString(requestObject[key]) && _.keys(requestObject[key]).length > 0) {
-  //       removeEmptyAttributes(requestObject[key]);
-  //     } else {
-  //       if(!_.isNumber(requestObject[key]) && _.isEmpty(requestObject[key]) || key === '$$hashKey') {
-  //         delete(requestObject[key]);
-  //       }
-  //     }
-  //   });
-  // };
 
   let sanitizeRequest = (requestObject) => {
     //Remove deleted chapters
@@ -69,15 +35,20 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
           });
 
           module.grid.rows = _.map(module.grid.data, (row) => {
-            // let rowData = [];
             return _.map(module.grid.columnDefs, (column) => {
               return row[column.name];
             });
-
-            // return rowData;
           });
         }
       });
+
+      // TODO: If the frontend wants to remove the data which is empty
+      // examples:
+      // 1. Table is added but no columns and no rows
+      // 2. Section/Paragraph is added but empty text
+      // 3. List is added but all items are empty
+      // 4. Items are added to the list but the item does not have any content.
+      //Please check the below code, it might be erroneous.
 
       //     //Remove empty columns and rows from table
       //     _.each(chapter.data, (module) => {
@@ -153,8 +124,8 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
 
     this.$mdDialog.show(confirm).then((result) => {
       this.chapterNumber++;
-      if (!this.frontBlockData.chapters.chapters) {
-        this.frontBlockData.chapters.chapters = [];
+      if (_.isUndefined(this.frontBlockData.chapters) || _.isUndefined(this.frontBlockData.chapters.chapters)) {
+        _.set(this.frontBlockData, 'chapters.chapters', []);// = [];
       }
 
       this.frontBlockData.chapters.chapters.push({

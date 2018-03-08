@@ -1,14 +1,13 @@
-{{ heading }}
 {{#if ordered}}
   \begin{enumerate}
-    {{#each arr}}
-      \item {{this}}
+    {{#each items}}
+      \item {{this.text}}
      {{/each}}
   \end{enumerate}
 {{else}}
   \begin{itemize}
-    {{#each arr}}
-      \item {{this}}
+    {{#each items}}
+      \item {{this.text}}
     {{/each}}
   \end{itemize}
 {{/if}}

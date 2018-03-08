@@ -1,7 +1,7 @@
 <div ng-if="!loginBinder.successfulLogin">
-  <login successful-login="loginBinder.successfulLogin"></login>
+  <login successful-login="loginBinder.successfulLogin" front-block-data="loginBinder.latexJson"></login>
 </div>
 
 <div ng-if="loginBinder.successfulLogin">
-  <startup-page></startup-page>
+  <startup-page front-block-data = "loginBinder.latexJson"></startup-page>
 </div>

@@ -8,7 +8,28 @@
  */
 let MainController = function($scope) {
   $scope.loginBinder = {
-    successfulLogin: false
+    successfulLogin: false,
+    latexJson: {
+      title: {
+        title: '',
+        author: '',
+        college: '',
+        degree: '',
+        date: new Date()
+      },
+      dedication: {
+        dedication: ''
+      },
+      acknowledge: {
+        acknowledge:''
+      },
+      abstract: {
+        abstract: ''
+      },
+      chapters: {
+        chapters: []
+      }
+    }
   };
 };
 

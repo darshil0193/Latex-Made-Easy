@@ -87,9 +87,10 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
 
   this.login = ((credentials) => {
     if (!_.isEmpty(credentials.username) && !_.isEmpty(credentials.password)) {
-      this.LoginFact.loginUser(credentials).then(() => {
+      this.LoginFact.loginUser(credentials).then((response) => {
         this.successfulLogin = true;
         this.$rootScope.currentUser = this.credentials.username;
+        this.frontBlockData = response.data.latexJson;
         this.credentials = {
           username: '',
           password: '',
