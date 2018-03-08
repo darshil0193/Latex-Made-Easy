@@ -1,16 +1,14 @@
 \begin{table}[h!]
-  \caption { {{table.caption}} }
+  \caption { {{caption}} }
   \centering
-  \begin{tabular} {||c c c c||}
+  \begin{tabular} { {{#each grid.columns}}|| c {{/each}} ||}
     \hline
-    {{#each table.header}}
-      {{ this }} &
-    {{/each}} \\
+    \hline
+    {{#each grid.columns}}{{ this }} & {{/each}}\\
     \hline\hline
-    {{#each table.data}}
-      {{#each this}}
-        {{this}} &
-        {{/each}} \\
+    {{#each grid.rows}}
+    {{#each this}}{{this}} & {{/each}}\\
     {{/each}}
+    \hline
   \end{tabular}
 \end{table}

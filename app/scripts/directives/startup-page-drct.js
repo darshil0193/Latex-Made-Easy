@@ -12,7 +12,17 @@ let StartupPageDirective = function() {
     restrict: 'E',
     controller: 'StartupPageCtrl',
     controllerAs: 'ctrl',
-    bindToController: true
+    bindToController: true,
+    scope: {
+      frontBlockData: '='
+    },
+    link: (scope, element, attr, ctrl) => {
+
+      //Update the total number of chapters if chapters exist.
+      ctrl.chapterNumber = !_.isUndefined(ctrl.frontBlockData) && !_.isUndefined(ctrl.frontBlockData.chapters) &&
+        !_.isUndefined(ctrl.frontBlockData.chapters.chapters) && _.isArray(ctrl.frontBlockData.chapters.chapters) ?
+        ctrl.frontBlockData.chapters.chapters.length : 0;
+    }
   };
 };
 

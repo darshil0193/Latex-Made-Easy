@@ -68,7 +68,7 @@ app.post('/registerUser', (req, res) => {
           } else {
             let passCheck = passwordCheck(password);
             if (_.isEmpty(passCheck.error)) {
-              collection.insert({username: username, password: password, email: email}, (err) => {
+              collection.insert({username: username, password: password, email: email, latex: '', latexJson: {}}, (err) => {
                 client.close();
                 if (err === null) {
                   res.status(200).send({data: 'Added to the database'});
@@ -95,7 +95,7 @@ app.post('/logInUser', (req, res) => {
       client.close();
       if (item !== null) {
         if (item.password === password) {
-          res.status(200).send({data: 'User logged in successfully'});
+          res.status(200).send({data: 'User logged in successfully', latexJson: item.latexJson});
         }
         else {
           res.status(400).send({error: 'PASS_INCORRECT'});
@@ -107,25 +107,59 @@ app.post('/logInUser', (req, res) => {
   });
 });
 
+let addLatexToDb = (latexCode, latexJson) => {
+  MongoClient.connect(uri, (err, client) => {
+    const collection = client.db('latex-made-easy-db').collection('users');
+    collection.update({username: currentUser}, {
+      $set: {latex: latexCode, latexJson: latexJson}
+    });
+  });
+};
+
+hb.registerHelper('addDataToChapters', (chapters) => {
+  let chapterNumber = chapters.data.index;
+  let chapter = chapters.data.root.chapters[chapterNumber];
+  let chapterLatex = '';
+  let source = '';
+    _.each(chapter.data, (moduleInChapter) => {
+      if(_.isEqual(moduleInChapter.type, 'section')) {
+        source = fs.readFileSync(path.resolve('backend/latex-handlers/section.html'), 'utf8');
+      } else if(_.isEqual(moduleInChapter.type, 'paragraph')) {
+        source = fs.readFileSync(path.resolve('backend/latex-handlers/paragraph.html'), 'utf8');
+      } else if(_.isEqual(moduleInChapter.type, 'list')) {
+        source = fs.readFileSync(path.resolve('backend/latex-handlers/list.html'), 'utf8');
+      } else if(_.isEqual(moduleInChapter.type, 'table')) {
+        source = fs.readFileSync(path.resolve('backend/latex-handlers/table.html'), 'utf8');
+      }
+      let template = hb.compile(source);
+      chapterLatex += template(moduleInChapter);
+    });
+  return(chapterLatex.split('& \\').join('\\'));
+});
+
+let updateMainJson = (mainJson, key, templateLatex) => {
+  mainJson['add' + _.startCase(key)] = templateLatex;
+};
+
 let getLatex = (json) => {
   //let json = JSON.parse(fs.readFileSync('backend/sample-jsons/maindump.json', 'utf8'));
+  let mainJson = {};
   let latexCode = '';
   for (let key in json) {
-    if (key === 'chapters') {
-      continue;
-    }
-
     let filename = key + '.html';
     let source = fs.readFileSync(path.resolve('backend/latex-handlers/' + filename), 'utf8');
     let template = hb.compile(source);
     let templateLatex = template(json[key]);
+    updateMainJson(mainJson, key, templateLatex);
     if (!_.isEmpty(templateLatex)) {
       latexCode += templateLatex + '\r\n';
     }
   }
 
-  console.log(latexCode);
-  return latexCode;
+  let mainSource = fs.readFileSync(path.resolve('backend/latex-handlers/main.html'), 'utf8');
+  let mainTemplate = hb.compile(mainSource);
+  let mainLatex = mainTemplate(mainJson);
+  return mainLatex;
 };
 
 app.post('/getLatex', (req, res) => {
@@ -134,7 +168,14 @@ app.post('/getLatex', (req, res) => {
   let json = req.body;
   let latexCode = getLatex(json);
 
-  fs.writeFile(__dirname + '/download-data/latex_file.tex', latexCode, 'utf8', (err) => {
+  addLatexToDb(latexCode, json);
+
+  if (!fs.existsSync(__dirname + '/download-data/' + currentUser)){
+    fs.mkdirSync(__dirname + '/download-data/' + currentUser);
+  }
+
+
+  fs.writeFile(__dirname + '/download-data/' + currentUser + '/latex_file_' + currentUser + '.tex', latexCode, 'utf8', (err) => {
     if (err) {
       throw err;
     }
@@ -142,7 +183,10 @@ app.post('/getLatex', (req, res) => {
     console.log('The file was successfully saved');
   });
 
-  let output = fs.createWriteStream(__dirname + '/download-data/all_files_' + currentUser + '.zip');
+  fs.createReadStream(__dirname + '/download-data/class_file.cls').pipe(fs.createWriteStream(__dirname + '/download-data/' + currentUser + '/class_file_' + currentUser + '.cls'));
+  fs.createReadStream(__dirname + '/download-data/ncsu.png').pipe(fs.createWriteStream(__dirname + '/download-data/' + currentUser + '/ncsu_' + currentUser + '.png'));
+
+  let output = fs.createWriteStream(__dirname + '/download-data/' + currentUser + '/all_files_' + currentUser + '.zip');
   let archive = archiver('zip', {
     zlib: { level: 9 } // Sets the compression level.
   });
@@ -150,7 +194,7 @@ app.post('/getLatex', (req, res) => {
   output.on('close', function() {
     console.log(archive.pointer() + ' total bytes');
     console.log('archiver has been finalized and the output file descriptor has closed.');
-    res.download(__dirname + '/download-data/all_files_' + currentUser + '.zip');
+    res.download(__dirname + '/download-data/' + currentUser + '/all_files_' + currentUser + '.zip');
   });
 
   output.on('end', function() {
@@ -173,8 +217,9 @@ app.post('/getLatex', (req, res) => {
 
   archive.pipe(output);
 
-  archive.file(__dirname + '/download-data/latex_file.tex', {name: 'latex_file.tex'});
-  archive.file(__dirname + '/download-data/class_file.cls', {name: 'class_file.cls'});
+  archive.file(__dirname + '/download-data/' + currentUser + '/latex_file_' + currentUser + '.tex', {name: 'latex_file.tex'});
+  archive.file(__dirname + '/download-data/' + currentUser + '/class_file_' + currentUser + '.cls', {name: 'class_file.cls'});
+  archive.file(__dirname + '/download-data/' + currentUser + '/ncsu_' + currentUser + '.png', {name: 'ncsu.png'});
   archive.finalize();
 });
 
