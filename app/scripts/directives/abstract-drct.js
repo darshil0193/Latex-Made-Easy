@@ -15,7 +15,7 @@ let AbstractDirective = function() {
     scope: {
       abstract: '='
     },
-    link: (scope, element, attr, ctrl) => {
+    link: (scope, element, attr) => {
       attr.$$element[0].children[0].children[1].focus();
     }
   };

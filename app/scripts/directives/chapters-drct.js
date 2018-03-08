@@ -16,18 +16,18 @@ let ChaptersDirective = function() {
       chapter: '='
     },
     link: (scope, element, attr, ctrl) => {
-      if(!_.isEmpty(ctrl.chapter.introduction)) {
+      if (!_.isEmpty(ctrl.chapter.introduction)) {
         ctrl.introductionNumber++;
       }
 
       _.each(ctrl.chapter.data, (module) => {
-        if(module.type === 'section') {
+        if (module.type === 'section') {
           ctrl.addSection(module);
-        } else if(module.type === 'table') {
+        } else if (module.type === 'table') {
           ctrl.addTable(module);
-        } else if(module.type === 'list') {
+        } else if (module.type === 'list') {
           ctrl.addList(module);
-        } else if(module.type === 'paragraph') {
+        } else if (module.type === 'paragraph') {
           ctrl.addParagraph(module);
         }
       });

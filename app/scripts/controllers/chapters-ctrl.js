@@ -19,7 +19,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
   this.$mdDialog = $mdDialog;
 
   this.addSection = (sectionData) => {
-    if(_.isEmpty(sectionData)) {
+    if (_.isEmpty(sectionData)) {
       let confirm = this.$mdDialog.prompt()
         .title('Section Name')
         .textContent('Please provide a section name')
@@ -67,7 +67,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
       this.chapter.data = [];
     }
 
-    if(_.isEmpty(paragraphData)) {
+    if (_.isEmpty(paragraphData)) {
       this.chapter.data.push({
         moduleId: this.moduleNumber,
         id: this.paragraphNumber,
@@ -88,7 +88,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
       this.chapter.data = [];
     }
 
-    if(_.isEmpty(listData)) {
+    if (_.isEmpty(listData)) {
       this.chapter.data.push({
         moduleId: this.moduleNumber,
         id: this.listNumber,
@@ -101,6 +101,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
         ordered: false
       });
     }
+
     let ele = this.$compile('<add-list list="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></add-list>')(this.$scope);
     this.$element.append(ele);
   };
@@ -112,7 +113,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
       this.chapter.data = [];
     }
 
-    if(_.isEmpty(tableData)) {
+    if (_.isEmpty(tableData)) {
       this.chapter.data.push({
         moduleId: this.moduleNumber,
         id: this.tableNumber,

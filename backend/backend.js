@@ -121,20 +121,21 @@ hb.registerHelper('addDataToChapters', (chapters) => {
   let chapter = chapters.data.root.chapters[chapterNumber];
   let chapterLatex = '';
   let source = '';
-    _.each(chapter.data, (moduleInChapter) => {
-      if(_.isEqual(moduleInChapter.type, 'section')) {
-        source = fs.readFileSync(path.resolve('backend/latex-handlers/section.html'), 'utf8');
-      } else if(_.isEqual(moduleInChapter.type, 'paragraph')) {
-        source = fs.readFileSync(path.resolve('backend/latex-handlers/paragraph.html'), 'utf8');
-      } else if(_.isEqual(moduleInChapter.type, 'list')) {
-        source = fs.readFileSync(path.resolve('backend/latex-handlers/list.html'), 'utf8');
-      } else if(_.isEqual(moduleInChapter.type, 'table')) {
-        source = fs.readFileSync(path.resolve('backend/latex-handlers/table.html'), 'utf8');
-      }
-      let template = hb.compile(source);
-      chapterLatex += template(moduleInChapter);
-    });
-  return(chapterLatex.split('& \\').join('\\'));
+  _.each(chapter.data, (moduleInChapter) => {
+    if (_.isEqual(moduleInChapter.type, 'section')) {
+      source = fs.readFileSync(path.resolve('backend/latex-handlers/section.html'), 'utf8');
+    } else if (_.isEqual(moduleInChapter.type, 'paragraph')) {
+      source = fs.readFileSync(path.resolve('backend/latex-handlers/paragraph.html'), 'utf8');
+    } else if (_.isEqual(moduleInChapter.type, 'list')) {
+      source = fs.readFileSync(path.resolve('backend/latex-handlers/list.html'), 'utf8');
+    } else if (_.isEqual(moduleInChapter.type, 'table')) {
+      source = fs.readFileSync(path.resolve('backend/latex-handlers/table.html'), 'utf8');
+    }
+
+    let template = hb.compile(source);
+    chapterLatex += template(moduleInChapter);
+  });
+  return (chapterLatex.split('& \\').join('\\'));
 });
 
 let updateMainJson = (mainJson, key, templateLatex) => {
@@ -170,10 +171,9 @@ app.post('/getLatex', (req, res) => {
 
   addLatexToDb(latexCode, json);
 
-  if (!fs.existsSync(__dirname + '/download-data/' + currentUser)){
+  if (!fs.existsSync(__dirname + '/download-data/' + currentUser)) {
     fs.mkdirSync(__dirname + '/download-data/' + currentUser);
   }
-
 
   fs.writeFile(__dirname + '/download-data/' + currentUser + '/latex_file_' + currentUser + '.tex', latexCode, 'utf8', (err) => {
     if (err) {

@@ -15,7 +15,7 @@ let SectionsDirective = function() {
     scope: {
       section: '='
     },
-    link: (scope, element, attr, ctrl) => {
+    link: (scope, element, attr) => {
       attr.$$element[0].children[0].children[1].focus();
     }
   };
