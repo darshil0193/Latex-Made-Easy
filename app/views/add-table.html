@@ -1,11 +1,5 @@
 <div class="form-group">
-  <label>{{ctrl.table.caption}}</label>
-  <div ng-hide="ctrl.hideGrid" ui-grid="ctrl.table.grid" ui-grid-edit ui-grid-cellNav></div><br/>
-  <div ng-hide="ctrl.hideGrid" ng-if="ctrl.table.grid.columnDefs.length > 0 && ctrl.table.grid.data.length > 0 && ctrl.isAddCaption">
-    <label>Caption: </label>
-    <input ng-model="ctrl.table.caption" type="text" class="form-control" placeholder="Caption Please">
-    <br/>
-  </div>
+  <label>{{ctrl.table.caption || 'New Table'}}: </label>
   <button class="btn btn-primary" ng-click="ctrl.hideGrid = !ctrl.hideGrid">
     {{ctrl.hideGrid && 'Show' || 'Hide'}} Table
   </button>
@@ -22,4 +16,11 @@
     Remove Table <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </button>
   <br/><br/>
+  <div ng-hide="ctrl.hideGrid" ng-if="ctrl.table.grid.columnDefs.length > 0 && ctrl.table.grid.data.length > 0 && ctrl.isAddCaption">
+    <label>Caption: </label>
+    <input ng-model="ctrl.table.caption" type="text" class="form-control" placeholder="Caption Please">
+    <br/>
+  </div>
+
+  <div ng-hide="ctrl.hideGrid" ui-grid="ctrl.table.grid" ui-grid-edit ui-grid-cellNav></div>
 </div>

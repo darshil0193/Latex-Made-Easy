@@ -1,10 +1,11 @@
 <div class="form-group">
-  <label>{{ctrl.section.name}}</label>
-  <textarea ng-hide="ctrl.hideSection" class="form-control" ng-model="ctrl.section.text" rows="10"></textarea><br/>
+  <label>{{ctrl.section.name}}:</label>
   <button class="btn btn-primary" ng-click="ctrl.hideSection = !ctrl.hideSection">
     {{ctrl.hideSection && 'Show' || 'Hide'}} Section
   </button>
   <button class="btn btn-danger" ng-click="ctrl.removeSection()">
     Remove Section <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </button>
+  <br/><br/>
+  <textarea ng-hide="ctrl.hideSection" class="form-control" ng-model="ctrl.section.text" rows="10"></textarea>
 </div>

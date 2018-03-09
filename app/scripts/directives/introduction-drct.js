@@ -13,7 +13,8 @@ let IntroductionDirective = function() {
     controllerAs: 'ctrl',
     bindToController: true,
     scope: {
-      chapter: '='
+      chapter: '=',
+      introductionNumber: '='
     },
     link: (scope, element, attr) => {
       attr.$$element[0].children[0].children[1].focus();

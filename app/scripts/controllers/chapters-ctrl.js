@@ -17,6 +17,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
   this.$compile = $compile;
   this.$scope = $scope;
   this.$mdDialog = $mdDialog;
+  this.hideChapter = false;
 
   this.addSection = (sectionData) => {
     if (_.isEmpty(sectionData)) {
@@ -118,7 +119,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
         moduleId: this.moduleNumber,
         id: this.tableNumber,
         type: 'table',
-        caption: 'New Table',
+        caption: '',
         deleted: false,
         grid: {
           enableColumnMenus: false,
@@ -138,19 +139,6 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
 
   this.addIntroduction = () => {
     this.introductionNumber++;
-  };
-
-  this.removeIntroduction = () => {
-    let confirm = this.$mdDialog.confirm()
-      .title('Removal Confirmation')
-      .textContent('Are you sure you want to remove? The data will be lost.')
-      .ok('Yes')
-      .cancel('No');
-
-    this.$mdDialog.show(confirm).then(() => {
-      this.introductionNumber--;
-      this.chapter.introduction = '';
-    });
   };
 
   this.removeChapter = () => {

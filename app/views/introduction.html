@@ -1,7 +1,11 @@
 <div class="form-group">
   <label>Introduction: </label>
-  <textarea ng-hide="ctrl.hideIntro" class="form-control" ng-model="ctrl.chapter.introduction" rows="10"></textarea><br/>
   <button class="btn btn-primary" ng-click="ctrl.hideIntro = !ctrl.hideIntro">
     {{ctrl.hideIntro && 'Show' || 'Hide'}} Introduction
   </button>
+  <button class="btn btn-danger" ng-click="ctrl.removeIntroduction()">
+  Remove Introduction <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+  <br/><br/>
+  <textarea ng-hide="ctrl.hideIntro" class="form-control" ng-model="ctrl.chapter.introduction" rows="10"></textarea>
 </div>

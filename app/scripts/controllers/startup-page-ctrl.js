@@ -92,10 +92,10 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
   };
 
   this.getLatex = (isSave) => {
-    // let requestObject = _.cloneDeep(frontBlockData);
-    let requestObject = this.frontBlockData;
-    if (!_.isString(this.frontBlockData.title.date)) {
-      requestObject.title.date = this.frontBlockData.title.date.toDateString().substring(4);
+    let requestObject = _.cloneDeep(this.frontBlockData);
+
+    if (!_.isString(requestObject.title.date)) {
+      requestObject.title.date = requestObject.title.date.toDateString().substring(4);
     }
 
     requestObject.currentUser = this.$rootScope.currentUser;

@@ -1,29 +1,29 @@
 <div class="form-group">
-  <label>{{ctrl.chapter.name}}</label> <br/><br/>
+  <label>{{ctrl.chapter.name}}:</label>
 
-  <button class="btn btn-primary" ng-click="ctrl.addSection()">Add Section</button>
-  <button class="btn btn-primary" ng-click="ctrl.addIntroduction()" ng-if="ctrl.introductionNumber === 0">Add
+  <button class="btn btn-primary" ng-click="ctrl.hideChapter = !ctrl.hideChapter">
+    {{ctrl.hideChapter && 'Show' || 'Hide'}} Chapter
+  </button>
+
+  <button ng-show="!ctrl.hideChapter" class="btn btn-primary" ng-click="ctrl.addSection()">Add Section</button>
+  <button ng-show="!ctrl.hideChapter" class="btn btn-primary" ng-click="ctrl.addIntroduction()" ng-if="ctrl.introductionNumber === 0">Add
     Introduction
   </button>
 
-  <button class="btn btn-danger" ng-click="ctrl.removeIntroduction()" ng-if="ctrl.introductionNumber === 1">
-    Remove Introduction <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-  </button>
+  <button ng-show="!ctrl.hideChapter" class="btn btn-primary" ng-click="ctrl.addTable()">Add Table</button>
 
-  <button class="btn btn-primary" ng-click="ctrl.addTable()">Add Table</button>
+  <button ng-show="!ctrl.hideChapter" class="btn btn-primary" ng-click="ctrl.addParagraph()">Add Paragraph</button>
 
-  <button class="btn btn-primary" ng-click="ctrl.addParagraph()">Add Paragraph</button>
-
-  <button class="btn btn-primary" ng-click="ctrl.addList()">Add List</button>
+  <button ng-show="!ctrl.hideChapter" class="btn btn-primary" ng-click="ctrl.addList()">Add List</button>
 
   <button class="btn btn-danger" ng-click="ctrl.removeChapter()">
     Remove Chapter <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </button>
   <br/><br/>
 
-  <div ng-if="ctrl.introductionNumber === 1">
-    <introduction chapter="ctrl.chapter"></introduction>
+  <div ng-if="ctrl.introductionNumber === 1" ng-show="!ctrl.hideChapter">
+    <introduction chapter="ctrl.chapter" introduction-number="ctrl.introductionNumber"></introduction>
   </div>
 
-  <div id="modulesHolder" class="form-group" sv-root sv-part="ctrl.chapter.data"></div>
+  <div id="modulesHolder" class="form-group" sv-root sv-part="ctrl.chapter.data" ng-show="!ctrl.hideChapter"></div>
 </div>
