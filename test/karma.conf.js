@@ -61,6 +61,7 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/angular-sortable-view/0.0.17/angular-sortable-view.min.js',
       // 'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
