@@ -62,7 +62,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 100%;
   }
 
   /* Remove the padding we set earlier */
@@ -84,6 +84,16 @@ body {
 
 .login-form {
   border: 3px solid #f1f1f1;
+  width: 60%;
+}
+
+.login-imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+.login-container {
+  padding: 16px;
 }
 
 .login-text {
@@ -146,18 +156,8 @@ body {
   opacity: 0.8;
 }
 
-.login-imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
 .login-avatar {
-  width: 40%;
   border-radius: 50%;
-}
-
-.login-container {
-  padding: 16px;
 }
 
 .login-forgot-psw {
@@ -177,7 +177,7 @@ body {
 }
 
 .custom-more-width {
-  width: 750px;
+  width: 1200px;
   text-align: center;
   font-size: 40px;
 }
@@ -187,7 +187,7 @@ body {
 }
 
 .custom-align-center {
-  margin-left: 30%;
+  margin-left: 40%;
 }
 
 
