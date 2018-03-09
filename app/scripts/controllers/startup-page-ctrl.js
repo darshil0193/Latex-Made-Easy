@@ -7,12 +7,13 @@
  * Controller of the latexmadeeasyApp
  */
 
-let StartupPageController = function($mdDialog, $rootScope, $window, StartupPageFact, FileSaver, Blob) {
+let StartupPageController = function($mdDialog, $rootScope, $window, $timeout, StartupPageFact, FileSaver, Blob) {
   this.fileSaver = FileSaver;
   this.blob = Blob;
   this.$rootScope = $rootScope;
   this.$mdDialog = $mdDialog;
   this.$window = $window;
+  this.$timeout = $timeout;
   this.StartupPageFact = StartupPageFact;
   this.pageNumber = 1;
 
@@ -153,7 +154,10 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
   };
 
   this.logOut = () => {
-    this.$window.location.reload();
+    this.getLatex(true);
+    this.$timeout(() => {
+      this.$window.location.reload();
+    }, 1000);
   };
 };
 

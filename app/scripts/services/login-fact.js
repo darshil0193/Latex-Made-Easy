@@ -6,11 +6,12 @@
  * # loginFact
  * Factory in the latexmadeeasyApp.
  */
-let LoginFactory = function($http) {
+let LoginFactory = function($http, constants) {
   this.$http = $http;
+  this.constants = constants;
 
   this.registerUser = (credentials) => {
-    return this.$http.post('https://latex-made-easy-backend.herokuapp.com/registerUser', {
+    return this.$http.post(this.constants.backendUrl + '/registerUser', {
       username: credentials.username,
       password: credentials.password,
       email: credentials.email
@@ -18,7 +19,7 @@ let LoginFactory = function($http) {
   };
 
   this.loginUser = (credentials) => {
-    return this.$http.post('https://latex-made-easy-backend.herokuapp.com/loginUser', {
+    return this.$http.post(this.constants.backendUrl + '/loginUser', {
       username: credentials.username,
       password: credentials.password,
       email: credentials.email
@@ -26,7 +27,7 @@ let LoginFactory = function($http) {
   };
 
   this.sendEmail = (credentials) => {
-    return this.$http.post('https://latex-made-easy-backend.herokuapp.com/sendEmail', {
+    return this.$http.post(this.constants.backendUrl + '/sendEmail', {
       username: credentials.username
     });
   };

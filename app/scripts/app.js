@@ -7,8 +7,7 @@
  *
  * Main module of the application.
  */
-angular
-  .module('latexmadeeasyApp', [
+let app = angular.module('latexmadeeasyApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -33,3 +32,7 @@ angular
         redirectTo: '/'
       });
   });
+
+app.constant('constants', {
+  backendUrl: 'https://latex-made-easy-backend.herokuapp.com'
+});

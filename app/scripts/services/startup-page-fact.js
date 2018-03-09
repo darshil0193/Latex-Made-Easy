@@ -6,12 +6,13 @@
  * # startupPage
  * Factory in the latexmadeeasyApp.
  */
-let StartupPageFactory = function($http) {
+let StartupPageFactory = function($http, constants) {
   this.$http = $http;
+  this.constants = constants;
 
   this.getLatex = (reqObject) => {
     return this.$http({
-      url: 'https://latex-made-easy-backend.herokuapp.com/getLatex',
+      url: this.constants.backendUrl + '/getLatex',
       method: 'POST',
       data: reqObject,
       responseType: 'blob'
@@ -20,7 +21,7 @@ let StartupPageFactory = function($http) {
 
   this.saveLatex = (reqObject) => {
     return this.$http({
-      url: 'https://latex-made-easy-backend.herokuapp.com/saveLatex',
+      url: this.constants.backendUrl + '/saveLatex',
       method: 'POST',
       data: reqObject
     });
