@@ -21,6 +21,19 @@ let AddListController = function($mdDialog, $element, $scope) {
     });
   };
 
+  this.removeLastItem = () => {
+    let confirm = this.$mdDialog.confirm()
+      .title('Removal Confirmation')
+      .textContent('Are you sure you want to remove? The data will be lost.')
+      .ok('Yes')
+      .cancel('No');
+
+    this.$mdDialog.show(confirm).then(() => {
+      this.item--;
+      this.list.items.pop();
+    });
+  };
+
   this.removeList = () => {
     let confirm = this.$mdDialog.confirm()
       .title('Removal Confirmation')
