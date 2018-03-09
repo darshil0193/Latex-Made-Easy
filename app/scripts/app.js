@@ -19,7 +19,8 @@ angular
     'ngMaterial',
     'ngFileSaver',
     'ui.grid',
-    'ui.grid.edit'
+    'ui.grid.edit',
+    'angular-sortable-view'
   ])
   .config(($routeProvider) => {
     $routeProvider

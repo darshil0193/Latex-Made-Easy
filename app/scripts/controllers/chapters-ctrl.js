@@ -46,7 +46,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
         });
 
         let ele = this.$compile('<sections section="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></sections>')(this.$scope);
-        this.$element.append(ele);
+        ele.appendTo(document.getElementById('modulesHolder'));
       });
     } else {
       this.moduleNumber++;
@@ -56,7 +56,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
       }
 
       let ele = this.$compile('<sections section="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></sections>')(this.$scope);
-      this.$element.append(ele);
+      ele.appendTo(document.getElementById('modulesHolder'));
     }
   };
 
@@ -78,7 +78,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
     }
 
     let ele = this.$compile('<paragraph paragraph="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></paragraph>')(this.$scope);
-    this.$element.append(ele);
+    ele.appendTo(document.getElementById('modulesHolder'));
   };
 
   this.addList = (listData) => {
@@ -103,7 +103,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
     }
 
     let ele = this.$compile('<add-list list="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></add-list>')(this.$scope);
-    this.$element.append(ele);
+    ele.appendTo(document.getElementById('modulesHolder'));
   };
 
   this.addTable = (tableData) => {
@@ -133,7 +133,7 @@ let ChaptersController = function($scope, $element, $compile, $mdDialog) {
     }
 
     let ele = this.$compile('<add-table table="ctrl.chapter.data[' + (this.moduleNumber - 1) + ']"></add-table>')(this.$scope);
-    this.$element.append(ele);
+    ele.appendTo(document.getElementById('modulesHolder'));
   };
 
   this.addIntroduction = () => {
