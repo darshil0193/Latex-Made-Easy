@@ -12,7 +12,6 @@ let AddListController = function($mdDialog, $element, $scope) {
   this.$element = $element;
   this.$scope = $scope;
   this.hideList = false;
-  this.items = 1;
 
   this.addItem = () => {
     this.items++;

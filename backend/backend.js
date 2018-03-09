@@ -163,13 +163,23 @@ let getLatex = (json) => {
   return mainLatex;
 };
 
-app.post('/getLatex', (req, res) => {
-  currentUser = req.body.currentUser;
-  delete req.body.currentUser;
-  let json = req.body;
+let saveLatex = (requestBody) => {
+  currentUser = requestBody.currentUser;
+  delete requestBody.currentUser;
+  let json = requestBody;
   let latexCode = getLatex(json);
 
   addLatexToDb(latexCode, json);
+  return latexCode;
+};
+
+app.post('/saveLatex', (req, res) => {
+  saveLatex(req.body);
+  res.status(200).send({message: 'Successfully saved'});
+});
+
+app.post('/getLatex', (req, res) => {
+  let latexCode = saveLatex(req.body);
 
   if (!fs.existsSync(__dirname + '/download-data/' + currentUser)) {
     fs.mkdirSync(__dirname + '/download-data/' + currentUser);

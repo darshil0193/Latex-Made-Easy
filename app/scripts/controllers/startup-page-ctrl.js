@@ -91,11 +91,11 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
     //   removeEmptyAttributes(requestObject);
   };
 
-  this.getLatex = (frontBlockData) => {
+  this.getLatex = (isSave) => {
     // let requestObject = _.cloneDeep(frontBlockData);
-    let requestObject = frontBlockData;
-    if (!_.isString(frontBlockData.title.date)) {
-      requestObject.title.date = frontBlockData.title.date.toDateString().substring(4);
+    let requestObject = this.frontBlockData;
+    if (!_.isString(this.frontBlockData.title.date)) {
+      requestObject.title.date = this.frontBlockData.title.date.toDateString().substring(4);
     }
 
     requestObject.currentUser = this.$rootScope.currentUser;
@@ -103,13 +103,27 @@ let StartupPageController = function($mdDialog, $rootScope, $window, StartupPage
 
     // sanitizeRequest(requestObject.title);
 
-    this.StartupPageFact.getLatex(requestObject).then((data) => {
-      let blob = new this.blob([data.data]);
-      let fileName = data.headers()['content-disposition'].split('"')[1];
-      this.fileSaver.saveAs(blob, fileName);
-    }).catch((err) => {
-      console.log(err.data);
-    });
+    if (isSave) {
+      this.StartupPageFact.saveLatex(requestObject).then(() => {
+        $mdDialog.show(
+          $mdDialog.alert()
+            .clickOutsideToClose(true)
+            .title('Hurrah!')
+            .textContent('Your status was saved successfully')
+            .ok('Got it!')
+        );
+      }).catch((err) => {
+        console.log(err.data);
+      });
+    } else {
+      this.StartupPageFact.getLatex(requestObject).then((data) => {
+        let blob = new this.blob([data.data]);
+        let fileName = data.headers()['content-disposition'].split('"')[1];
+        this.fileSaver.saveAs(blob, fileName);
+      }).catch((err) => {
+        console.log(err.data);
+      });
+    }
   };
 
   this.addChapter = () => {

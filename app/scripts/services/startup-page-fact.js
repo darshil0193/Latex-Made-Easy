@@ -18,8 +18,17 @@ let StartupPageFactory = function($http) {
     });
   };
 
+  this.saveLatex = (reqObject) => {
+    return this.$http({
+      url: 'https://latex-made-easy-backend.herokuapp.com/saveLatex',
+      method: 'POST',
+      data: reqObject
+    });
+  };
+
   return {
-    getLatex: this.getLatex
+    getLatex: this.getLatex,
+    saveLatex: this.saveLatex
   };
 };
 

@@ -15,6 +15,9 @@ let AddListDirective = function() {
     bindToController: true,
     scope: {
       list: '='
+    },
+    link: (scope) => {
+      scope.ctrl.items = scope.ctrl.list.items.length;
     }
   };
 };
