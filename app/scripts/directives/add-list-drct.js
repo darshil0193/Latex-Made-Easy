@@ -16,8 +16,9 @@ let AddListDirective = function() {
     scope: {
       list: '='
     },
-    link: (scope) => {
+    link: (scope, element, attr) => {
       scope.ctrl.items = scope.ctrl.list.items.length;
+      attr.$$element[0].children[0].children[2].focus();
     }
   };
 };

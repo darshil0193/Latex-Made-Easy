@@ -14,6 +14,9 @@ let AddTableDirective = function() {
     bindToController: true,
     scope: {
       table: '='
+    },
+    link: (scope, element, attr) => {
+      attr.$$element[0].children[0].children[2].focus();
     }
   };
 };
