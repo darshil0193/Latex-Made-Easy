@@ -20,7 +20,7 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
     email:''
   };
 
-  this.updateErrors = (err) => {
+  let updateErrors = (err) => {
     if (err.data.error === 'PASS_LENGTH') {
       this.failureTitle = 'Password Error';
       this.failureMessage = 'Password should be at least 8 characters in length';
@@ -72,7 +72,7 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
           email: ''
         };
       }).catch((err) => {
-        this.updateErrors(err);
+        updateErrors(err);
         this.$mdDialog.show(
           this.$mdDialog.alert()
             .parent(angular.element(document.querySelector('#popupContainer')))
@@ -97,7 +97,7 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
           email: ''
         };
       }).catch((err) => {
-        this.updateErrors(err);
+        updateErrors(err);
 
         this.$mdDialog.show(
           this.$mdDialog.alert()
@@ -141,7 +141,7 @@ let LoginController = function($mdDialog, $rootScope, LoginFact) {
         );
 
       }).catch((err) => {
-        this.updateErrors(err);
+        updateErrors(err);
         this.$mdDialog.show(
           this.$mdDialog.alert()
             .parent(angular.element(document.querySelector('#popupContainer')))

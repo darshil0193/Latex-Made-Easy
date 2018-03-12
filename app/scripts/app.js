@@ -18,8 +18,7 @@ let app = angular.module('latexmadeeasyApp', [
     'ngMaterial',
     'ngFileSaver',
     'ui.grid',
-    'ui.grid.edit',
-    'angular-sortable-view'
+    'ui.grid.edit'
   ])
   .config(($routeProvider) => {
     $routeProvider
