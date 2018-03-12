@@ -16,7 +16,7 @@ describe('Controller: AcknowledgementCtrl', function() {
     });
   }));
 
-  it('should pass', function() {
-    expect(true).toBe(true);
+  it('should be empty', function() {
+    expect(AcknowledgementCtrl).toBeDefined();
   });
 });
