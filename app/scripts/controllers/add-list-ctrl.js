@@ -29,7 +29,7 @@ let AddListController = function($mdDialog, $element, $scope) {
       .cancel('No');
 
     this.$mdDialog.show(confirm).then(() => {
-      this.item--;
+      this.items--;
       this.list.items.pop();
     });
   };
