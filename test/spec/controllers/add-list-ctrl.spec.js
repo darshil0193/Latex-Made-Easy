@@ -18,7 +18,7 @@ describe('Controller: AddListCtrl', () => {
     $timeout = _$timeout_;
     AddListCtrl = $controller('AddListCtrl', {
       $scope: scope,
-      $element: element,
+      $element: element
 
       // place here mocked dependencies
     });
