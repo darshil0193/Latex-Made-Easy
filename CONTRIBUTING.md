@@ -14,7 +14,7 @@ Detailed Description
 fixes #0
 ```
 
-type can contain `feat`(features), `refactor`, `config`, `fix`
+type can contain `feat`(features), `refactor`, `config`, `fix`, `test`
 
 The short description cannot be more than 50 characters. If required, please give a short description and explain in detail under the Detailed Description section.
 
@@ -26,7 +26,10 @@ If it is an enhacement, please create an issue for the same, before adding the c
 In case if database access is required, please email to <darshil0193@gmail.com> with the subject `Access to Database required: Latex-Made-Easy`
 
 #### Testing the code
-Please add test cases along with the code. Please build your code with `grunt default` prior to raising a pull request.
+Please add test cases along with the code. Please build your code with `npm run release` prior to raising a pull request. The pull request will not be accepted till the coverage of the tests be greater than or equal to 85%
 
 #### Pull Request
 Please raise a pull request for merging your code to the master branch.
+
+#### Continuous Integration
+Once a pull request is raised, it will kick off a Travis CI build. Feel free to follow the build to check for any errors.
