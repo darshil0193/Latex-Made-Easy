@@ -29,3 +29,5 @@ This should open up the application in your default browser.
 Once the user registers in the system, they can log in to the application and fill up the required data and click on the 'Get Latex' Button which will allow them to retrieve the latex code for the data provided.
 
 Please make sure that currently the application follows just one template and we are planning to add new templates in the future.
+
+If you want to contribute to this project please follow the steps in [CONTRIBUTING.md](https://github.com/darshil0193/Latex-Made-Easy/blob/master/CONTRIBUTING.md)
