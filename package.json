@@ -5,6 +5,7 @@
     "start": "node backend/backend.js",
     "clean": "npm cache clean --force && bower cache clean && rm -rf dist .tmp",
     "release": "grunt default"
+    "coveralls": "npm run release -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
