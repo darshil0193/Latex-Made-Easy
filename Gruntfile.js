@@ -10,6 +10,8 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-karma-coveralls');
+  grunt.loadNpmTasks('grunt-coveralls');
+
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
