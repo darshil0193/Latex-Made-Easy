@@ -9,6 +9,7 @@
 
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify-es');
+  grunt.loadNpmTasks('grunt-karma-coveralls');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -174,6 +175,16 @@ module.exports = function(grunt) {
         }]
       },
       server: '.tmp'
+    },
+
+    coveralls: {
+      options: {
+        debug: true,
+        coverageDir: 'coverage',
+        dryRun: true,
+        force: true,
+        recursive: true
+      }
     },
 
     // Add vendor prefixed styles
@@ -483,6 +494,7 @@ module.exports = function(grunt) {
     'newer:jshint',
     'newer:jscs',
     'test',
+    'coveralls',
     'build'
   ]);
 };

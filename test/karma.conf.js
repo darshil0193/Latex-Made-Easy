@@ -113,8 +113,9 @@ module.exports = function(config) {
     // urlRoot: '_karma_'
 
     coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
+      type : 'lcov',
+      dir : 'coverage/',
+      subdir: '.'
     }
   });
 };
