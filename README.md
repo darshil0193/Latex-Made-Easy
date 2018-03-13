@@ -1,7 +1,5 @@
 # Latex-Made-Easy
 
-[![Coverage Status](https://coveralls.io/repos/darshil0193/latex-made-easy/badge.svg?branch=master)](https://coveralls.io/r/darshil0193/latex-made-easy?branch=master)
-
 ### Introduction
 Our project mainly focuses on helping the techies to avoid writing latex code. Our app will be providing UI components to the users for all the complex items encountered while writing a technical document (eg. equations, tables, titles, authors etc.) At the end, once the user provides the data, the app will generate downloadable latex code for the document and also provide a downloadable pdf corresponding to the document. We are aiming to reduce the time taken by the users for writing latex code even if that is using templates as UI components will make it much more convenient for use.
 
