@@ -1,4 +1,4 @@
-Please read the [README.md](https://github.com/darshil0193/Latex-Made-Easy/blob/master/README.md) to understand how to make the application working on the locat computer.
+Please read the [README.md](https://github.com/darshil0193/Latex-Made-Easy/blob/master/README.md) to understand how to make the application working on the local computer.
 
 #### Please Fork!
 While contributing to the application, please create a new fork of the repository and clone the forked repository instead of cloning this repository directly.
